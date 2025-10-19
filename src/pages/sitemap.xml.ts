@@ -2,7 +2,11 @@ import type { APIRoute } from 'astro';
 
 const pages: string[] = [
   '/',
-  '/contacto'
+  '/contacto',
+  '/servicios/entrenamiento-personalizado',
+  '/servicios/seminarios-talleres',
+  '/servicios/planes-nutricionales',
+  '/servicios/asesoria-online'
 ];
 
 export const GET: APIRoute = ({ site }) => {
@@ -12,7 +16,7 @@ export const GET: APIRoute = ({ site }) => {
   const urls = pages
     .map((path) => {
       const loc = `${baseUrl.replace(/\/$/, '')}${path}`;
-      const priority = path === '/' ? '1.0' : '0.8';
+      const priority = path === '/' ? '1.0' : path.startsWith('/servicios') ? '0.9' : '0.8';
       return `<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`;
     })
     .join('');

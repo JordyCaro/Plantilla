@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
-import FeaturedServices from '../components/FeaturedServices.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import TestimonialSlider from '../components/TestimonialSlider';
 import AboutUs from '../components/AboutUs.astro';
+import ServiciosGrid from '../components/ServiciosGrid.astro';
 import TeamSection from '../components/TeamSection.astro';
+// import TestimonialSlider from '../components/TestimonialSlider';
 
 ---
 
@@ -14,77 +13,14 @@ import TeamSection from '../components/TeamSection.astro';
   description="Transforma tu cuerpo y tu vida con Jairo Traine. Entrenamiento personalizado, seminarios motivacionales y planes adaptados a tus objetivos. Soy tu mayor fan."
   keywords="entrenador personal, fitness, gym, entrenamiento personalizado, nutrición, transformación física, motivación, seminarios fitness, Jairo Traine"
 >
-  <main class="pb-20">
+  <main>
     <HeroSection />
     <AboutUs />
-    <FeaturedServices />
-    
-    
-    <!-- More Services -->
-    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Más Servicios <span class="text-primary-dark dark:text-primary-light">Especializados</span>
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Soluciones completas para tu desarrollo físico y mental
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ServiceCard
-            title="Planes Nutricionales"
-            description="Alimentación balanceada y personalizada que complementa tu entrenamiento para maximizar resultados."
-            icon="nutrition"
-            color="primary"
-            features={[
-              "Plan alimenticio personalizado",
-              "Recetas saludables y prácticas",
-              "Seguimiento semanal",
-              "Ajustes según progreso"
-            ]}
-            tags={["Nutrición", "Dietas", "Salud"]}
-            href="/contacto"
-          />
-          
-          <ServiceCard
-            title="Asesoría Online"
-            description="Entrena desde donde estés con seguimiento virtual constante y programas adaptados a tu disponibilidad."
-            icon="online"
-            color="accent"
-            features={[
-              "Sesiones virtuales en vivo",
-              "Videos de ejercicios personalizados",
-              "Chat directo para dudas",
-              "Revisión de técnica por video"
-            ]}
-            tags={["Virtual", "Flexible", "Remoto"]}
-            href="/contacto"
-          />
-
-          <ServiceCard
-            title="Contenido Motivacional"
-            description="Comparto tips, rutinas y motivación en redes sociales para inspirarte cada día."
-            icon="content"
-            color="primary"
-            features={[
-              "Consejos diarios de fitness",
-              "Rutinas de entrenamiento",
-              "Motivación constante",
-              "Comunidad activa"
-            ]}
-            tags={["Instagram", "TikTok", "Comunidad"]}
-            href="/contacto"
-          />
-        </div>
-      </div>
-    </section>
-
+    <ServiciosGrid />
     <TeamSection />
     
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 mb-20">
+    <!-- Testimonials Section - Comentado para uso futuro -->
+    <!-- <section id="testimonials" class="py-20 mb-20">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Transformaciones <span class="text-primary-dark dark:text-primary-light">Reales</span>
@@ -94,6 +30,6 @@ import TeamSection from '../components/TeamSection.astro';
         </p>
       </div>
       <TestimonialSlider client:load />
-    </section>
+    </section> -->
   </main>
 </Layout>
