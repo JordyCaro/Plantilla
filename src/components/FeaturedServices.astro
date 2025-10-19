@@ -1,0 +1,48 @@
+---
+import FeaturedService from './FeaturedService.astro';
+---
+
+<section id="featured-services" class="py-20 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Servicios <span class="text-primary-dark dark:text-primary-light">Principales</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Programas diseñados para llevarte al siguiente nivel físico y mental
+      </p>
+    </div>
+
+    <FeaturedService
+      title="Entrenamiento Personalizado"
+      description="Sesiones one-on-one diseñadas específicamente para tus objetivos. Ya sea que busques ganar músculo, perder grasa o mejorar tu rendimiento, crearemos un plan adaptado a ti."
+      features={[
+        "Plan de entrenamiento personalizado",
+        "Seguimiento constante de progreso",
+        "Ajustes según tu evolución",
+        "Motivación y apoyo continuo",
+        "Técnica y forma correcta"
+      ]}
+      image="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=2070"
+      color="primary"
+      href="/contacto"
+      imagePosition="right"
+    />
+
+    <FeaturedService
+      title="Seminarios y Talleres"
+      description="Comparto mi conocimiento y pasión en seminarios grupales. Aprende sobre nutrición, técnicas de entrenamiento y mindset ganador para transformar tu vida."
+      features={[
+        "Talleres de técnica avanzada",
+        "Charlas motivacionales",
+        "Educación nutricional",
+        "Mentalidad de campeón",
+        "Sesiones grupales dinámicas"
+      ]}
+      image="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=2070"
+      color="accent"
+      href="/contacto"
+      imagePosition="left"
+    />
+  </div>
+</section>
