@@ -182,11 +182,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Hide Scrollbars -->
     <link rel="stylesheet" href="/src/styles/hide-scrollbars.css" />
     
+    <!-- Mobile Fixes -->
+    <link rel="stylesheet" href="/src/styles/mobile-fixes.css" />
+    
+    <!-- Force No Horizontal Scroll -->
+    <link rel="stylesheet" href="/src/styles/force-no-horizontal-scroll.css" />
+    
     <!-- Text Visibility -->
     <link rel="stylesheet" href="/src/styles/text-visibility.css" />
     <link rel="stylesheet" href="/src/styles/button-fixes.css" />
+    
+    <!-- Inline CSS to force no horizontal scroll -->
+    <style>
+      * {
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
+      
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100vw !important;
+      }
+      
+      @media (max-width: 768px) {
+        * {
+          max-width: 100vw !important;
+          overflow-x: hidden !important;
+        }
+        
+        .absolute {
+          left: 0 !important;
+          right: 0 !important;
+          max-width: 100vw !important;
+        }
+        
+        .blur-2xl, .blur-3xl {
+          max-width: 60vw !important;
+          left: 20vw !important;
+          right: 20vw !important;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden" style="scrollbar-width: none; -ms-overflow-style: none; max-width: 100vw; overflow-x: hidden !important;">
     <!-- Skip to content link for screen readers -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     
