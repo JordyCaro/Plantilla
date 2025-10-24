@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   compressHTML: true,
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
     minify: true,
     format: 'file',
     assets: 'assets'
