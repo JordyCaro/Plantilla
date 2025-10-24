@@ -1,0 +1,450 @@
+---
+const formFields = [
+  {
+    name: 'nombre',
+    label: 'Nombre Completo',
+    type: 'text',
+    required: true,
+    placeholder: 'Tu nombre completo'
+  },
+  {
+    name: 'email',
+    label: 'Correo Electrónico',
+    type: 'email',
+    required: true,
+    placeholder: 'tu@email.com'
+  },
+  {
+    name: 'telefono',
+    label: 'Teléfono',
+    type: 'tel',
+    required: false,
+    placeholder: '+57 300 123 4567'
+  },
+  {
+    name: 'objetivo',
+    label: '¿Cuál es tu objetivo principal?',
+    type: 'select',
+    required: true,
+    options: [
+      'Pérdida de peso',
+      'Ganancia muscular',
+      'Mejorar condición física',
+      'Preparación para competencia',
+      'Cambio de hábitos',
+      'Otro'
+    ]
+  },
+  {
+    name: 'experiencia',
+    label: '¿Tienes experiencia en el gym?',
+    type: 'select',
+    required: true,
+    options: [
+      'Principiante (0-6 meses)',
+      'Intermedio (6 meses - 2 años)',
+      'Avanzado (más de 2 años)',
+      'Nunca he entrenado'
+    ]
+  },
+  {
+    name: 'servicio',
+    label: '¿Qué servicio te interesa más?',
+    type: 'select',
+    required: true,
+    options: [
+      'Entrenamiento Personalizado',
+      'Seminarios y Talleres',
+      'Planes Nutricionales',
+      'Asesoría Online',
+      'No estoy seguro'
+    ]
+  },
+  {
+    name: 'mensaje',
+    label: 'Cuéntame sobre ti y tus metas',
+    type: 'textarea',
+    required: false,
+    placeholder: 'Comparte tu historia, objetivos específicos, limitaciones de tiempo, o cualquier información que me ayude a conocerte mejor...'
+  }
+];
+---
+
+<div class="max-w-4xl mx-auto">
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-4">
+      ¡Hablemos de tus <span class="text-primary-dark dark:text-primary-light">Metas!</span>
+    </h2>
+    <p class="text-xl text-gray-600 dark:text-gray-400">
+      Completa este formulario y te contactaré en menos de 24 horas
+    </p>
+  </div>
+
+  <form 
+    id="contact-form" 
+    class="space-y-8"
+    action="/api/contact"
+    method="POST"
+  >
+    <!-- Progress Indicator -->
+    <div class="progress-indicator mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">Progreso</span>
+        <span class="text-sm font-semibold text-primary-dark dark:text-primary-light">
+          <span id="current-step">1</span>/3
+        </span>
+      </div>
+      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+        <div id="progress-bar" class="bg-primary-dark h-2 rounded-full transition-all duration-500" style="width: 33%"></div>
+      </div>
+    </div>
+
+    <!-- Step 1: Información Personal -->
+    <div class="form-step" data-step="1">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Información Personal</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="form-group">
+          <label for="nombre" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Nombre Completo *
+          </label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+            placeholder="Tu nombre completo"
+          />
+          <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Correo Electrónico *
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+            placeholder="tu@email.com"
+          />
+          <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Teléfono
+          </label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            name="telefono"
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+            placeholder="+57 300 123 4567"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Objetivos y Experiencia -->
+    <div class="form-step hidden" data-step="2">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Tus Objetivos y Experiencia</h3>
+      <div class="space-y-6">
+        <div class="form-group">
+          <label for="objetivo" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            ¿Cuál es tu objetivo principal? *
+          </label>
+          <select 
+            id="objetivo" 
+            name="objetivo" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+          >
+            <option value="">Selecciona tu objetivo</option>
+            <option value="perdida-peso">Pérdida de peso</option>
+            <option value="ganancia-muscular">Ganancia muscular</option>
+            <option value="mejorar-condicion">Mejorar condición física</option>
+            <option value="preparacion-competencia">Preparación para competencia</option>
+            <option value="cambio-habitos">Cambio de hábitos</option>
+            <option value="otro">Otro</option>
+          </select>
+          <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="experiencia" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            ¿Tienes experiencia en el gym? *
+          </label>
+          <select 
+            id="experiencia" 
+            name="experiencia" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+          >
+            <option value="">Selecciona tu nivel</option>
+            <option value="principiante">Principiante (0-6 meses)</option>
+            <option value="intermedio">Intermedio (6 meses - 2 años)</option>
+            <option value="avanzado">Avanzado (más de 2 años)</option>
+            <option value="nunca">Nunca he entrenado</option>
+          </select>
+          <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="servicio" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            ¿Qué servicio te interesa más? *
+          </label>
+          <select 
+            id="servicio" 
+            name="servicio" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+          >
+            <option value="">Selecciona un servicio</option>
+            <option value="entrenamiento-personalizado">Entrenamiento Personalizado</option>
+            <option value="seminarios-talleres">Seminarios y Talleres</option>
+            <option value="planes-nutricionales">Planes Nutricionales</option>
+            <option value="asesoria-online">Asesoría Online</option>
+            <option value="no-seguro">No estoy seguro</option>
+          </select>
+          <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Mensaje Final -->
+    <div class="form-step hidden" data-step="3">
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Cuéntame Más</h3>
+      <div class="form-group">
+        <label for="mensaje" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Cuéntame sobre ti y tus metas
+        </label>
+        <textarea 
+          id="mensaje" 
+          name="mensaje" 
+          rows="6"
+          class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors resize-none"
+          placeholder="Comparte tu historia, objetivos específicos, limitaciones de tiempo, o cualquier información que me ayude a conocerte mejor..."
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between pt-8">
+      <button 
+        type="button" 
+        id="prev-btn" 
+        class="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors hidden"
+      >
+        Anterior
+      </button>
+      
+      <button 
+        type="button" 
+        id="next-btn" 
+        class="px-8 py-3 bg-primary-dark hover:bg-primary text-white font-bold rounded-lg transition-colors"
+      >
+        Siguiente
+      </button>
+      
+      <button 
+        type="submit" 
+        id="submit-btn" 
+        class="px-8 py-3 bg-primary-dark hover:bg-primary text-white font-bold rounded-lg transition-colors hidden"
+      >
+        Enviar Consulta
+      </button>
+    </div>
+  </form>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-md mx-4 text-center">
+      <div class="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">¡Consulta Enviada!</h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">
+        Gracias por confiar en mí. Te contactaré en menos de 24 horas para hablar sobre tus objetivos.
+      </p>
+      <button 
+        id="close-modal" 
+        class="px-6 py-3 bg-primary-dark hover:bg-primary text-white font-bold rounded-lg transition-colors"
+      >
+        Perfecto
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  class ContactForm {
+    private currentStep = 1;
+    private totalSteps = 3;
+    private form: HTMLFormElement;
+    private progressBar: HTMLElement;
+    private currentStepSpan: HTMLElement;
+    private prevBtn: HTMLButtonElement;
+    private nextBtn: HTMLButtonElement;
+    private submitBtn: HTMLButtonElement;
+    private successModal: HTMLElement;
+    private closeModalBtn: HTMLButtonElement;
+
+    constructor() {
+      this.form = document.getElementById('contact-form') as HTMLFormElement;
+      this.progressBar = document.getElementById('progress-bar') as HTMLElement;
+      this.currentStepSpan = document.getElementById('current-step') as HTMLElement;
+      this.prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+      this.nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+      this.submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+      this.successModal = document.getElementById('success-modal') as HTMLElement;
+      this.closeModalBtn = document.getElementById('close-modal') as HTMLButtonElement;
+
+      this.init();
+    }
+
+    private init() {
+      this.nextBtn.addEventListener('click', () => this.nextStep());
+      this.prevBtn.addEventListener('click', () => this.prevStep());
+      this.submitBtn.addEventListener('click', () => this.submitForm());
+      this.closeModalBtn.addEventListener('click', () => this.closeModal());
+      
+      // Real-time validation
+      this.form.addEventListener('input', (e) => this.validateField(e.target as HTMLInputElement));
+    }
+
+    private nextStep() {
+      if (this.validateCurrentStep()) {
+        this.currentStep++;
+        this.updateStep();
+      }
+    }
+
+    private prevStep() {
+      this.currentStep--;
+      this.updateStep();
+    }
+
+    private updateStep() {
+      // Hide all steps
+      document.querySelectorAll('.form-step').forEach(step => {
+        step.classList.add('hidden');
+      });
+
+      // Show current step
+      const currentStepElement = document.querySelector(`[data-step="${this.currentStep}"]`) as HTMLElement;
+      if (currentStepElement) {
+        currentStepElement.classList.remove('hidden');
+      }
+
+      // Update progress bar
+      const progress = (this.currentStep / this.totalSteps) * 100;
+      this.progressBar.style.width = `${progress}%`;
+      this.currentStepSpan.textContent = this.currentStep.toString();
+
+      // Update buttons
+      this.prevBtn.classList.toggle('hidden', this.currentStep === 1);
+      this.nextBtn.classList.toggle('hidden', this.currentStep === this.totalSteps);
+      this.submitBtn.classList.toggle('hidden', this.currentStep !== this.totalSteps);
+    }
+
+    private validateCurrentStep(): boolean {
+      const currentStepElement = document.querySelector(`[data-step="${this.currentStep}"]`) as HTMLElement;
+      const requiredFields = currentStepElement.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!this.validateField(field as HTMLInputElement)) {
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    private validateField(field: HTMLInputElement): boolean {
+      const errorMessage = field.parentElement?.querySelector('.error-message') as HTMLElement;
+      
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        this.showError(field, errorMessage, 'Este campo es obligatorio');
+        return false;
+      }
+
+      if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+        this.showError(field, errorMessage, 'Ingresa un email válido');
+        return false;
+      }
+
+      this.hideError(field, errorMessage);
+      return true;
+    }
+
+    private showError(field: HTMLInputElement, errorMessage: HTMLElement, message: string) {
+      field.classList.add('border-red-500', 'focus:ring-red-500');
+      field.classList.remove('border-gray-300', 'focus:ring-primary-dark');
+      if (errorMessage) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('hidden');
+      }
+    }
+
+    private hideError(field: HTMLInputElement, errorMessage: HTMLElement) {
+      field.classList.remove('border-red-500', 'focus:ring-red-500');
+      field.classList.add('border-gray-300', 'focus:ring-primary-dark');
+      if (errorMessage) {
+        errorMessage.classList.add('hidden');
+      }
+    }
+
+    private isValidEmail(email: string): boolean {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    private async submitForm() {
+      if (!this.validateCurrentStep()) return;
+
+      const formData = new FormData(this.form);
+      
+      try {
+        this.submitBtn.textContent = 'Enviando...';
+        this.submitBtn.disabled = true;
+
+        // Simular envío (reemplazar con endpoint real)
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        this.successModal.classList.remove('hidden');
+        this.form.reset();
+        this.currentStep = 1;
+        this.updateStep();
+        
+      } catch (error) {
+        console.error('Error al enviar formulario:', error);
+        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+      } finally {
+        this.submitBtn.textContent = 'Enviar Consulta';
+        this.submitBtn.disabled = false;
+      }
+    }
+
+    private closeModal() {
+      this.successModal.classList.add('hidden');
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new ContactForm());
+  } else {
+    new ContactForm();
+  }
+
+  // Reinicializar después de transiciones de Astro
+  document.addEventListener('astro:after-swap', () => new ContactForm());
+</script>
+
+

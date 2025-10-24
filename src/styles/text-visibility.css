@@ -1,0 +1,118 @@
+/* Text Visibility Fixes - Only for buttons and specific elements */
+
+/* Force white text only on button backgrounds */
+.bg-primary-dark,
+.bg-primary {
+  color: white !important;
+}
+
+/* Force white text only on button spans */
+button span,
+a[role="button"] span,
+.btn span,
+.button span {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* SVG icons in buttons only */
+button svg,
+a[role="button"] svg,
+.btn svg,
+.button svg {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* Specific button classes only */
+.hero-btn-primary,
+.hero-btn-secondary {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.hero-btn-primary span,
+.hero-btn-secondary span {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* CTA buttons only */
+.cta-button,
+.call-to-action,
+.hero-cta {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.cta-button span,
+.call-to-action span,
+.hero-cta span {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* Navigation links - keep original colors but ensure visibility */
+.nav-link {
+  color: #374151 !important;
+  font-weight: 500 !important;
+}
+
+.dark .nav-link {
+  color: #d1d5db !important;
+}
+
+.nav-link:hover {
+  color: #7BA82F !important;
+}
+
+.dark .nav-link:hover {
+  color: #B8E986 !important;
+}
+
+/* Mobile menu links - keep original colors */
+.mobile-menu-link {
+  color: #374151 !important;
+  font-weight: 500 !important;
+}
+
+.dark .mobile-menu-link {
+  color: #d1d5db !important;
+}
+
+.mobile-menu-link:hover {
+  color: #7BA82F !important;
+}
+
+.dark .mobile-menu-link:hover {
+  color: #B8E986 !important;
+}
+
+/* Button-specific fixes only */
+a[href="/contacto"],
+a[href="#contacto"],
+button[type="submit"],
+input[type="submit"] {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+a[href="/contacto"] span,
+a[href="#contacto"] span,
+button[type="submit"] span,
+input[type="submit"] span {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* WhatsApp button specific */
+.whatsapp-float {
+  color: white !important;
+}
+
+.whatsapp-float svg {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}

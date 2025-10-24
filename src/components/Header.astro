@@ -1,56 +1,58 @@
 ---
 import ThemeToggle from './ThemeToggle';
+import ScrollProgress from './ui/ScrollProgress.astro';
 ---
 
-<header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 transition-colors duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-3 sm:py-4">
+<header class="header" role="banner" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
+  <div class="header-container" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
+    <div class="header-content" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
       <!-- Contenedor del logo y menú en móviles -->
-      <div class="flex items-center gap-4">
-        <a href="/" class="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
-          <span class="text-2xl sm:text-3xl font-bold text-primary-dark dark:text-primary-light">
-            JAIRO TRAINE
-          </span>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="logo" aria-label="Jairo Traine - Página de inicio">
+          JAIRO TRAINE
         </a>
         <!-- Botón Menú Hamburguesa -->
-        <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button 
+          id="menu-toggle" 
+          class="mobile-menu-btn"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h-8" />
           </svg>
         </button>
       </div>
 
       <!-- Menú en pantallas grandes -->
-      <nav class="hidden md:flex items-center gap-8">
-        <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">
-          Inicio
-        </a>
-        <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">
-          Sobre Mí
-        </a>
-        <a href="#servicios" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">
-          Servicios
-        </a>
+      <nav class="nav-desktop" role="navigation" aria-label="Navegación principal">
+        <a href="/" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Inicio</a>
+        <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Sobre Mí</a>
+        <a href="#servicios" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Servicios</a>
       </nav>
 
-      <div class="flex items-center gap-4">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
         <ThemeToggle client:load />
-        <a href="/contacto" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-dark hover:bg-primary dark:bg-primary dark:hover:bg-primary-dark transition-colors duration-200">
-          Contáctame
+        <a href="/contacto" class="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary-dark hover:bg-primary rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+          <span class="text-white font-bold">Contáctame</span>
         </a>
       </div>
     </div>
 
     <!-- Menú móvil -->
-    <nav id="mobile-menu" class="hidden md:hidden flex flex-col items-center gap-4 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-      <a href="/" class="menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">Inicio</a>
-      <a href="#about" class="menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">Sobre Mí</a>
-      <a href="#servicios" class="menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light">Servicios</a>
-      <a href="/contacto" class="menu-link inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-dark hover:bg-primary dark:bg-primary dark:hover:bg-primary-dark transition-colors duration-200">
-        Contáctame
+    <nav id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Navegación móvil" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
+      <a href="/" class="mobile-menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Inicio</a>
+      <a href="#about" class="mobile-menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Sobre Mí</a>
+      <a href="#servicios" class="mobile-menu-link text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium transition-colors duration-200">Servicios</a>
+      <a href="/contacto" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-dark hover:bg-primary rounded-lg transition-all duration-200 shadow-md hover:shadow-lg w-full max-w-xs">
+        <span class="text-white font-bold">Contáctame</span>
       </a>
     </nav>
   </div>
+  
+  <!-- Scroll Progress Bar -->
+  <ScrollProgress />
 </header>
 
 <script>
@@ -68,11 +70,19 @@ import ThemeToggle from './ThemeToggle';
     dropdownLinks.forEach(link => link.removeEventListener('click', handleDropdownClick));
 
     function toggleMenu() {
+      const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
+      
+      // Update ARIA attributes
+      menuToggle.setAttribute('aria-expanded', !isHidden);
+      menuToggle.setAttribute('aria-label', isHidden ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
     }
 
     function closeMenu() {
       mobileMenu.classList.add('hidden');
+      // Update ARIA attributes when closing
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
     }
 
     function handleDropdownClick(event) {

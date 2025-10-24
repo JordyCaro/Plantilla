@@ -1,58 +1,59 @@
 ---
 ---
 
-<section class="relative h-screen flex items-center justify-center overflow-hidden mt-0">
+<section class="hero-section" role="banner" aria-label="Sección principal" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
   <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 z-0">
+  <div class="hero-bg" aria-hidden="true">
     <img
-      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
-      alt="Fitness Training Background"
-      class="w-full h-full object-cover"
+      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=60&w=600"
+      alt="Gimnasio moderno con equipos de entrenamiento, persona ejercitándose con pesas en el fondo"
+      loading="eager"
+      fetchpriority="high"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+      width="600"
+      height="400"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
   </div>
 
-  <!-- Animated Shapes -->
-  <div class="absolute inset-0 z-0 overflow-hidden">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-primary-dark/20 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary-light/10 rounded-full blur-3xl animate-pulse delay-150"></div>
-  </div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <div class="hero-content">
     <!-- Main Heading -->
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-      <span class="block">Transforma</span>
-      <span class="block text-primary-light">Tu Cuerpo</span>
-      <span class="block">Tu Mente</span>
+    <h1 class="hero-title">
+      <span style="display: block;">Transforma</span>
+      <span style="display: block; color: #B8E986;">Tu Cuerpo y</span>
+      <span style="display: block;">Tu Mente</span>
     </h1>
 
     <!-- Tagline -->
-    <div class="mb-6">
-      <p class="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-light mb-3 animate-pulse">
+    <div style="margin-bottom: 1.5rem;">
+      <p class="hero-tagline">
         Soy tu mayor fan
       </p>
-      <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto">
+      <p class="hero-description">
         Entrenamiento personalizado diseñado para ti. Resultados reales, transformaciones duraderas.
       </p>
     </div>
 
     <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
+    <div class="hero-buttons">
       <a 
         href="/contacto" 
-        class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-black bg-primary-light hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-primary-light/50"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary-dark hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-primary-dark/50 focus:outline-none focus:ring-4 focus:ring-primary-dark/50 w-full sm:w-auto"
+        aria-label="Comenzar tu transformación - Contactar a Jairo Traine"
       >
-        <span>Empieza Ahora</span>
-        <svg class="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <span class="text-white font-bold">Empieza Ahora</span>
+        <svg class="w-5 h-5 ml-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
       </a>
       <a 
         href="#servicios" 
-        class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white border-3 border-white hover:bg-white hover:text-black rounded-full transition-all duration-300 transform hover:scale-105"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-black rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 w-full sm:w-auto"
+        aria-label="Ver servicios de entrenamiento personalizado"
       >
-        Ver Servicios
+        <span class="text-white font-bold">Ver Servicios</span>
       </a>
     </div>
 

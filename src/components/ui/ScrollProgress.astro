@@ -1,0 +1,50 @@
+---
+---
+
+<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 bg-primary-dark z-50 transform scale-x-0 origin-left transition-transform duration-300"></div>
+
+<script>
+  function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    function updateProgress() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = (scrollTop / scrollHeight) * 100;
+      
+      progressBar.style.transform = `scaleX(${scrollPercent / 100})`;
+    }
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }
+
+    function handleScroll() {
+      ticking = false;
+      requestTick();
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial call
+    updateProgress();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollProgress);
+  } else {
+    initScrollProgress();
+  }
+
+  // Reinitialize after Astro transitions
+  document.addEventListener('astro:after-swap', initScrollProgress);
+</script>
+
+

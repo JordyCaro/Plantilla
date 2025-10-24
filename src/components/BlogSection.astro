@@ -1,0 +1,96 @@
+---
+import BlogCard from './ui/BlogCard.astro';
+
+const blogPosts = [
+  {
+    title: "5 Errores Comunes que Te Impiden Perder Peso",
+    excerpt: "Descubre los errores más frecuentes en la pérdida de peso y cómo evitarlos para alcanzar tus objetivos de forma más eficiente.",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600",
+    date: "15 Ene 2024",
+    category: "Nutrición",
+    readTime: "5 min",
+    slug: "errores-comunes-perder-peso"
+  },
+  {
+    title: "La Mentalidad Ganadora: Cómo Mantener la Motivación",
+    excerpt: "La clave del éxito no está solo en el entrenamiento, sino en desarrollar una mentalidad fuerte que te impulse hacia tus metas.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=600",
+    date: "12 Ene 2024",
+    category: "Motivación",
+    readTime: "7 min",
+    slug: "mentalidad-ganadora-motivacion"
+  },
+  {
+    title: "Rutina de Entrenamiento para Principiantes",
+    excerpt: "Si eres nuevo en el gym, esta guía te ayudará a comenzar con el pie derecho y evitar lesiones comunes.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=600",
+    date: "10 Ene 2024",
+    category: "Entrenamiento",
+    readTime: "8 min",
+    slug: "rutina-principiantes-gym"
+  },
+  {
+    title: "Los Mejores Alimentos para Ganar Músculo",
+    excerpt: "Descubre qué comer para maximizar tus ganancias musculares y optimizar tu recuperación post-entrenamiento.",
+    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=600",
+    date: "8 Ene 2024",
+    category: "Nutrición",
+    readTime: "6 min",
+    slug: "alimentos-ganar-musculo"
+  },
+  {
+    title: "Cómo Superar el Estancamiento en el Gym",
+    excerpt: "Si sientes que no progresas, estos consejos te ayudarán a romper la meseta y seguir avanzando hacia tus objetivos.",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600",
+    date: "5 Ene 2024",
+    category: "Entrenamiento",
+    readTime: "9 min",
+    slug: "superar-estancamiento-gym"
+  },
+  {
+    title: "La Importancia del Descanso en el Fitness",
+    excerpt: "El descanso no es pereza, es parte fundamental del proceso. Aprende a optimizar tu recuperación para mejores resultados.",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600",
+    date: "3 Ene 2024",
+    category: "Bienestar",
+    readTime: "5 min",
+    slug: "importancia-descanso-fitness"
+  }
+];
+---
+
+<section id="blog" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 bg-primary-light/10 text-primary-dark dark:text-primary-light rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+        Consejos y Tips
+      </span>
+      <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
+        Conocimiento que <span class="text-primary-dark dark:text-primary-light">Transforma</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Aprende los secretos del fitness, nutrición y mentalidad ganadora con mis consejos prácticos y probados
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {blogPosts.map((post) => (
+        <BlogCard {...post} />
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a 
+        href="/blog" 
+        class="inline-flex items-center px-8 py-4 bg-primary-dark hover:bg-primary text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+      >
+        Ver Todos los Artículos
+        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,168 @@
+---
+// Analytics configuration
+const analyticsConfig = {
+  googleAnalytics: {
+    id: 'GA_MEASUREMENT_ID', // Replace with actual GA4 ID
+    enabled: true
+  },
+  googleTagManager: {
+    id: 'GTM_ID', // Replace with actual GTM ID
+    enabled: false
+  },
+  facebookPixel: {
+    id: 'FB_PIXEL_ID', // Replace with actual Pixel ID
+    enabled: false
+  },
+  hotjar: {
+    id: 'HOTJAR_ID', // Replace with actual Hotjar ID
+    enabled: false
+  }
+};
+---
+
+<!-- Google Analytics 4 -->
+{analyticsConfig.googleAnalytics.enabled && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.googleAnalytics.id}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{analyticsConfig.googleAnalytics.id}', {
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    </script>
+  </>
+)}
+
+<!-- Google Tag Manager -->
+{analyticsConfig.googleTagManager.enabled && (
+  <>
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','{analyticsConfig.googleTagManager.id}');
+    </script>
+    <noscript>
+      <iframe src={`https://www.googletagmanager.com/ns.html?id=${analyticsConfig.googleTagManager.id}`}
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  </>
+)}
+
+<!-- Facebook Pixel -->
+{analyticsConfig.facebookPixel.enabled && (
+  <script is:inline>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{analyticsConfig.facebookPixel.id}');
+    fbq('track', 'PageView');
+  </script>
+)}
+
+<!-- Hotjar -->
+{analyticsConfig.hotjar.enabled && (
+  <script is:inline>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:'{analyticsConfig.hotjar.id}',hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+)}
+
+<!-- Custom Event Tracking -->
+<script>
+  // Declare global functions for TypeScript
+  declare global {
+    function gtag(...args: any[]): void;
+    function fbq(...args: any[]): void;
+  }
+
+  // Track custom events
+  function trackEvent(eventName, eventCategory = 'engagement', eventLabel = '', eventValue = null) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_label: eventLabel,
+        value: eventValue
+      });
+    }
+    
+    // Facebook Pixel tracking
+    if (typeof fbq !== 'undefined') {
+      fbq('track', eventName);
+    }
+    
+    console.log(`Analytics: ${eventName}`, { category: eventCategory, label: eventLabel, value: eventValue });
+  }
+
+  // Track CTA clicks
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const cta = target.closest('a[href*="contacto"], a[href*="wa.me"], button[class*="cta"]');
+    
+    if (cta) {
+      const ctaText = cta.textContent?.trim() || 'CTA Click';
+      trackEvent('cta_click', 'conversion', ctaText);
+    }
+  });
+
+  // Track scroll depth
+  let maxScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    
+    if (scrollPercent > maxScroll) {
+      maxScroll = scrollPercent;
+      
+      // Track milestone scroll depths
+      if (scrollPercent >= 25 && maxScroll < 25) {
+        trackEvent('scroll_depth', 'engagement', '25%');
+      } else if (scrollPercent >= 50 && maxScroll < 50) {
+        trackEvent('scroll_depth', 'engagement', '50%');
+      } else if (scrollPercent >= 75 && maxScroll < 75) {
+        trackEvent('scroll_depth', 'engagement', '75%');
+      } else if (scrollPercent >= 90 && maxScroll < 90) {
+        trackEvent('scroll_depth', 'engagement', '90%');
+      }
+    }
+  });
+
+  // Track form interactions
+  document.addEventListener('submit', (e) => {
+    const form = e.target as HTMLFormElement;
+    if (form.id === 'contact-form') {
+      trackEvent('form_submit', 'conversion', 'contact_form');
+    }
+  });
+
+  // Track video plays (if any)
+  document.addEventListener('play', (e) => {
+    if (e.target instanceof HTMLVideoElement) {
+      trackEvent('video_play', 'engagement', 'video_content');
+    }
+  });
+
+  // Track external link clicks
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest('a[href^="http"]') as HTMLAnchorElement;
+    
+    if (link && !link.href.includes(window.location.hostname)) {
+      trackEvent('external_link_click', 'engagement', link.href);
+    }
+  });
+</script>

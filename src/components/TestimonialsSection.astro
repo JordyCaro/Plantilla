@@ -1,0 +1,137 @@
+---
+import TestimonialSlider from './testimonials/TestimonialSlider';
+
+const testimonials = [
+  {
+    id: 1,
+    name: "María González",
+    role: "Cliente desde 2022",
+    content: "Jairo cambió completamente mi perspectiva sobre el fitness. No solo perdí 20kg, sino que gané una confianza que nunca había tenido. Su enfoque personalizado y su motivación constante hicieron la diferencia.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "Perdió 20kg en 6 meses"
+  },
+  {
+    id: 2,
+    name: "Carlos Rodríguez",
+    role: "Atleta de Competencia",
+    content: "Como atleta, necesitaba alguien que entendiera mis objetivos específicos. Jairo no solo me ayudó a prepararme para mi competencia, sino que me enseñó técnicas que nunca había considerado. Logré el primer lugar gracias a su guía.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "1er lugar en competencia local"
+  },
+  {
+    id: 3,
+    name: "Laura Martínez",
+    role: "Emprendedora",
+    content: "Trabajar con Jairo fue una inversión en mi salud y mi productividad. Sus sesiones me dieron la energía y la disciplina que necesitaba para mi negocio. Ahora me siento más fuerte tanto física como mentalmente.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "Mejoró su energía y productividad"
+  },
+  {
+    id: 4,
+    name: "Jorge Díaz",
+    role: "Ejecutivo",
+    content: "Después de años de sedentarismo por el trabajo, pensé que era demasiado tarde para cambiar. Jairo me demostró que estaba equivocado. Su paciencia y conocimiento me ayudaron a transformar mi vida a los 45 años.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "Transformación completa a los 45"
+  },
+  {
+    id: 5,
+    name: "Ana Herrera",
+    role: "Madre de Familia",
+    content: "Ser madre de dos niños pequeños me dejaba sin tiempo para mí. Jairo me enseñó a entrenar de manera eficiente en casa y a priorizar mi salud. Ahora soy un ejemplo para mis hijos.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "Encuentra tiempo para su salud"
+  },
+  {
+    id: 6,
+    name: "Miguel Torres",
+    role: "Estudiante Universitario",
+    content: "Como estudiante, no tenía mucho dinero para un entrenador personal. Los seminarios de Jairo me dieron acceso a conocimiento de calidad a un precio accesible. Aprendí más en un seminario que en meses de YouTube.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    result: "Aprendió técnicas profesionales"
+  }
+];
+---
+
+<section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 bg-primary-light/10 text-primary-dark dark:text-primary-light rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+        Testimonios Reales
+      </span>
+      <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
+        Lo que dicen mis <span class="text-primary-dark dark:text-primary-light">Clientes</span>
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        Historias reales de transformación de personas que confiaron en el proceso y cambiaron sus vidas
+      </p>
+    </div>
+
+    <TestimonialSlider testimonials={testimonials} client:visible />
+
+    <!-- Stats Section -->
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="space-y-2">
+        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+          500+
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+          Clientes Transformados
+        </div>
+      </div>
+      <div class="space-y-2">
+        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+          98%
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+          Satisfacción
+        </div>
+      </div>
+      <div class="space-y-2">
+        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+          8+
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+          Años de Experiencia
+        </div>
+      </div>
+      <div class="space-y-2">
+        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+          5★
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+          Calificación Promedio
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mt-16 text-center">
+      <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          ¿Listo para ser la próxima historia de éxito?
+        </h3>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+          Únete a cientos de personas que ya transformaron sus vidas con mi ayuda
+        </p>
+        <a 
+          href="/contacto" 
+          class="inline-flex items-center px-8 py-4 bg-primary-dark hover:bg-primary text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          Comienza Tu Transformación
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+

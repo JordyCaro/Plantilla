@@ -1,0 +1,266 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout
+  title="Rutina de Entrenamiento para Principiantes - Jairo Traine"
+  description="Si eres nuevo en el gym, esta guía te ayudará a comenzar con el pie derecho y evitar lesiones comunes."
+  keywords="rutina principiantes, gym, entrenamiento, ejercicios básicos, fitness, Jairo Traine"
+>
+  <main class="pt-20 sm:pt-24">
+    <!-- Hero Section -->
+    <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1920"
+          alt="Persona principiante entrenando en el gym"
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-primary-dark/50"></div>
+      </div>
+      <div class="relative z-10 text-center text-white max-w-4xl px-4">
+        <div class="inline-block mb-4">
+          <span class="px-4 py-2 bg-primary-light/20 text-primary-light rounded-full text-sm font-bold uppercase tracking-wider">
+            Entrenamiento
+          </span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 leading-tight">
+          Rutina para <span class="text-primary-light">Principiantes</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-200 mb-4">
+          Tu guía completa para comenzar en el gym de forma segura y efectiva
+        </p>
+        <div class="flex items-center justify-center gap-4 text-sm text-gray-300">
+          <span>10 Ene 2024</span>
+          <span>•</span>
+          <span>8 min de lectura</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+            Comenzar en el gym puede ser abrumador. Con tantas máquinas, ejercicios y rutinas diferentes, 
+            es fácil sentirse perdido. Esta guía te dará todo lo que necesitas para empezar con confianza.
+          </p>
+
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Antes de Empezar: Preparación Mental</h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-6">
+            El primer paso no es físico, es mental. Acepta que todos empezamos desde cero y que 
+            el progreso toma tiempo. No te compares con otros, enfócate en tu propio viaje.
+          </p>
+
+          <div class="bg-primary-light/10 border-l-4 border-primary-dark p-6 mb-8">
+            <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-3">🎯 Objetivos Realistas para Principiantes:</h3>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li>• Aprender la técnica correcta de los ejercicios básicos</li>
+              <li>• Establecer una rutina de 3-4 días por semana</li>
+              <li>• Desarrollar la consistencia antes que la intensidad</li>
+              <li>• Escuchar a tu cuerpo y respetar los días de descanso</li>
+            </ul>
+          </div>
+
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Rutina de 3 Días para Principiantes</h2>
+          
+          <div class="space-y-8">
+            <!-- Día 1 -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+              <h3 class="text-2xl font-bold text-primary-dark dark:text-primary-light mb-4">Día 1: Tren Superior</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Press de Banca</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Pecho</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Remo con Barra</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Espalda</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Press Militar</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Hombros</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Curl de Bíceps</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 10-15 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Brazos</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Día 2 -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+              <h3 class="text-2xl font-bold text-primary-dark dark:text-primary-light mb-4">Día 2: Tren Inferior</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Sentadillas</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Piernas</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Peso Muerto</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 6-10 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Glúteos</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Zancadas</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 10 por pierna</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Piernas</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Elevaciones de Gemelos</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 15-20 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Pantorrillas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Día 3 -->
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+              <h3 class="text-2xl font-bold text-primary-dark dark:text-primary-light mb-4">Día 3: Cuerpo Completo</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Press de Banca Inclinado</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Pecho</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Dominadas Asistidas</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 5-10 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Espalda</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Sentadillas Frontales</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 8-12 repeticiones</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Piernas</span>
+                </div>
+                
+                <div class="flex justify-between items-center p-4 bg-white dark:bg-gray-600 rounded-lg">
+                  <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white">Plancha</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">3 series x 30-60 segundos</p>
+                  </div>
+                  <span class="text-primary-dark dark:text-primary-light font-bold">Core</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 mt-12">Consejos Importantes para Principiantes</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-primary-light/10 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-3">🏋️ Técnica Primero</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Aprende la forma correcta antes de aumentar el peso. Una buena técnica previene lesiones 
+                y maximiza los resultados.
+              </p>
+            </div>
+            
+            <div class="bg-primary-light/10 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-3">📈 Progresión Gradual</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Aumenta el peso solo cuando puedas completar todas las repeticiones con buena forma. 
+                La paciencia es clave.
+              </p>
+            </div>
+            
+            <div class="bg-primary-light/10 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-3">🔄 Descanso Adecuado</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Descansa 48-72 horas entre entrenamientos del mismo grupo muscular. 
+                El músculo crece durante el descanso.
+              </p>
+            </div>
+            
+            <div class="bg-primary-light/10 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-primary-dark dark:text-primary-light mb-3">💧 Hidratación</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Bebe agua antes, durante y después del entrenamiento. 
+                La deshidratación afecta tu rendimiento y recuperación.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-primary-dark to-primary-light text-white p-8 rounded-2xl mt-12">
+            <h3 class="text-2xl font-bold mb-4">⚠️ Señales de que Necesitas Reducir la Intensidad:</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <span class="text-2xl mr-3">🛑</span>
+                <span>Dolor agudo durante el ejercicio (no confundir con fatiga muscular)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-2xl mr-3">😰</span>
+                <span>Mareos o náuseas durante el entrenamiento</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-2xl mr-3">😴</span>
+                <span>Fatiga extrema que dura más de 24 horas</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-2xl mr-3">💔</span>
+                <span>Dolor en las articulaciones que persiste</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-700 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-6">¿Necesitas Guía Personalizada?</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+          Cada cuerpo es diferente. Te ayudo a crear una rutina personalizada que se adapte a tu nivel y objetivos.
+        </p>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-primary-dark hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl"
+        >
+          ¡Quiero mi Rutina Personalizada!
+          <svg class="w-6 h-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

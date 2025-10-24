@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/ui/BlogCard.astro';
+import ScrollReveal from '../../components/animations/ScrollReveal.astro';
+
+const blogPosts = [
+  {
+    title: "5 Errores Comunes que Te Impiden Perder Peso",
+    excerpt: "Descubre los errores más frecuentes en la pérdida de peso y cómo evitarlos para alcanzar tus objetivos de forma más eficiente.",
+    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600",
+    date: "15 Ene 2024",
+    category: "Nutrición",
+    readTime: "5 min",
+    slug: "errores-comunes-perder-peso"
+  },
+  {
+    title: "La Mentalidad Ganadora: Cómo Mantener la Motivación",
+    excerpt: "La clave del éxito no está solo en el entrenamiento, sino en desarrollar una mentalidad fuerte que te impulse hacia tus metas.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=600",
+    date: "12 Ene 2024",
+    category: "Motivación",
+    readTime: "7 min",
+    slug: "mentalidad-ganadora-motivacion"
+  },
+  {
+    title: "Rutina de Entrenamiento para Principiantes",
+    excerpt: "Si eres nuevo en el gym, esta guía te ayudará a comenzar con el pie derecho y evitar lesiones comunes.",
+    image: "https://images.unsplash.com/photo-1594737626071-ad40c076978f?auto=format&fit=crop&q=80&w=600",
+    date: "10 Ene 2024",
+    category: "Entrenamiento",
+    readTime: "8 min",
+    slug: "rutina-principiantes-gym"
+  },
+  {
+    title: "Los Mejores Alimentos para Ganar Músculo",
+    excerpt: "Descubre qué comer para maximizar tus ganancias musculares y optimizar tu recuperación post-entrenamiento.",
+    image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=600",
+    date: "8 Ene 2024",
+    category: "Nutrición",
+    readTime: "6 min",
+    slug: "alimentos-ganar-musculo"
+  },
+  {
+    title: "Cómo Superar el Estancamiento en el Gym",
+    excerpt: "Si sientes que no progresas, estos consejos te ayudarán a romper la meseta y seguir avanzando hacia tus objetivos.",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600",
+    date: "5 Ene 2024",
+    category: "Entrenamiento",
+    readTime: "9 min",
+    slug: "superar-estancamiento-gym"
+  },
+  {
+    title: "La Importancia del Descanso en el Fitness",
+    excerpt: "El descanso no es pereza, es parte fundamental del proceso. Aprende a optimizar tu recuperación para mejores resultados.",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600",
+    date: "3 Ene 2024",
+    category: "Bienestar",
+    readTime: "5 min",
+    slug: "importancia-descanso-fitness"
+  },
+  {
+    title: "Suplementación Inteligente: Qué Realmente Funciona",
+    excerpt: "Un análisis honesto sobre los suplementos que realmente valen la pena y cuáles son solo marketing.",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=600",
+    date: "1 Ene 2024",
+    category: "Nutrición",
+    readTime: "10 min",
+    slug: "suplementacion-inteligente"
+  },
+  {
+    title: "Entrenamiento en Casa: Rutinas Efectivas",
+    excerpt: "No necesitas un gimnasio para ponerte en forma. Descubre rutinas que puedes hacer en casa con resultados increíbles.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=600",
+    date: "28 Dic 2023",
+    category: "Entrenamiento",
+    readTime: "8 min",
+    slug: "entrenamiento-casa-rutinas"
+  },
+  {
+    title: "Mindset Fitness: La Psicología del Éxito",
+    excerpt: "Cómo desarrollar la mentalidad correcta para mantener la consistencia y alcanzar cualquier objetivo fitness.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    date: "25 Dic 2023",
+    category: "Motivación",
+    readTime: "12 min",
+    slug: "mindset-fitness-psicologia"
+  }
+];
+
+const categories = ["Todos", "Nutrición", "Entrenamiento", "Motivación", "Bienestar"];
+---
+
+<Layout 
+  title="Blog - Jairo Traine | Consejos de Fitness y Nutrición"
+  description="Aprende los secretos del fitness, nutrición y mentalidad ganadora con consejos prácticos y probados de Jairo Traine."
+  keywords="blog fitness, consejos nutrición, entrenamiento, motivación, Jairo Traine, tips gym"
+>
+  <main class="pt-20 sm:pt-24">
+    <!-- Hero Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-dark to-primary-light text-white">
+      <div class="max-w-7xl mx-auto text-center">
+        <h1 class="text-5xl lg:text-6xl font-black mb-6">
+          Blog <span class="text-white/90">Fitness</span>
+        </h1>
+        <p class="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+          Conocimiento que transforma. Aprende los secretos del fitness, nutrición y mentalidad ganadora.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Categories -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-4">
+          {categories.map((category) => (
+            <button 
+              class={`px-6 py-3 rounded-full font-semibold transition-all duration-300 filter-btn ${
+                category === 'Todos' 
+                  ? 'bg-primary-dark text-white' 
+                  : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-dark hover:text-white'
+              }`}
+              data-category={category.toLowerCase()}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto">
+        <ScrollReveal>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+            {blogPosts.map((post) => (
+              <div class="blog-post" data-category={post.category.toLowerCase()}>
+                <BlogCard {...post} />
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button 
+            id="load-more" 
+            class="px-8 py-4 bg-primary-dark hover:bg-primary text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Cargar Más Artículos
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-4">
+          No Te Pierdas Ningún Consejo
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+          Suscríbete a mi newsletter y recibe los mejores tips de fitness directamente en tu email.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input 
+            type="email" 
+            placeholder="Tu email" 
+            class="flex-1 px-6 py-4 border border-gray-300 dark:border-gray-600 rounded-full focus:ring-2 focus:ring-primary-dark focus:border-transparent dark:bg-gray-700 dark:text-white"
+            required
+          />
+          <button 
+            type="submit" 
+            class="px-8 py-4 bg-primary-dark hover:bg-primary text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105"
+          >
+            Suscribirse
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  function initBlogFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLButtonElement>;
+    const blogPosts = document.querySelectorAll('.blog-post') as NodeListOf<HTMLElement>;
+    const loadMoreBtn = document.getElementById('load-more') as HTMLButtonElement;
+    let currentCategory = 'todos';
+    let visiblePosts = 6;
+
+    // Filter functionality
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        currentCategory = category;
+        
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('bg-primary-dark', 'text-white'));
+        filterBtns.forEach(b => b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300'));
+        btn.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        btn.classList.add('bg-primary-dark', 'text-white');
+
+        // Filter posts
+        blogPosts.forEach(post => {
+          const postCategory = (post as HTMLElement).dataset.category;
+          if (category === 'todos' || postCategory === category) {
+            (post as HTMLElement).style.display = 'block';
+          } else {
+            (post as HTMLElement).style.display = 'none';
+          }
+        });
+
+        visiblePosts = 6;
+        updateLoadMoreButton();
+      });
+    });
+
+    // Load more functionality
+    function updateLoadMoreButton() {
+      const visiblePostsInCategory = Array.from(blogPosts).filter(post => {
+        const postCategory = (post as HTMLElement).dataset.category;
+        return (currentCategory === 'todos' || postCategory === currentCategory) && 
+               (post as HTMLElement).style.display !== 'none';
+      });
+
+      if (visiblePostsInCategory.length <= visiblePosts) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'inline-block';
+      }
+    }
+
+    loadMoreBtn.addEventListener('click', () => {
+      const allVisiblePosts = Array.from(blogPosts).filter(post => {
+        const postCategory = (post as HTMLElement).dataset.category;
+        return (currentCategory === 'todos' || postCategory === currentCategory) && 
+               (post as HTMLElement).style.display !== 'none';
+      });
+
+      visiblePosts = Math.min(visiblePosts + 3, allVisiblePosts.length);
+      
+      allVisiblePosts.forEach((post, index) => {
+        if (index < visiblePosts) {
+          (post as HTMLElement).style.display = 'block';
+        } else {
+          (post as HTMLElement).style.display = 'none';
+        }
+      });
+
+      updateLoadMoreButton();
+    });
+
+    // Initialize
+    updateLoadMoreButton();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlogFilters);
+  } else {
+    initBlogFilters();
+  }
+
+  // Reinitialize after Astro transitions
+  document.addEventListener('astro:after-swap', initBlogFilters);
+</script>
+
+<style>
+  .filter-btn {
+    transition: all 0.3s ease;
+  }
+
+  .blog-post {
+    transition: all 0.3s ease;
+  }
+</style>
