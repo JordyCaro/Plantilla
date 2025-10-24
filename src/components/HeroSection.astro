@@ -1,72 +1,51 @@
 ---
 ---
 
-<section class="hero-section" role="banner" aria-label="Sección principal" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
-  <!-- Background Image with Overlay -->
-  <div class="hero-bg" aria-hidden="true">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
     <img
       src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=60&w=600"
-      alt="Gimnasio moderno con equipos de entrenamiento, persona ejercitándose con pesas en el fondo"
+      alt="Gimnasio moderno"
+      class="w-full h-full object-cover"
       loading="eager"
       fetchpriority="high"
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-      width="600"
-      height="400"
     />
-    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
   </div>
 
-
   <!-- Content -->
-  <div class="hero-content">
-    <!-- Main Heading -->
-    <h1 class="hero-title">
-      <span style="display: block;">Transforma</span>
-      <span style="display: block; color: #B8E986;">Tu Cuerpo y</span>
-      <span style="display: block;">Tu Mente</span>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+      <span class="block">Transforma</span>
+      <span class="block text-primary-light">Tu Cuerpo y</span>
+      <span class="block">Tu Mente</span>
     </h1>
 
-    <!-- Tagline -->
-    <div style="margin-bottom: 1.5rem;">
-      <p class="hero-tagline">
-        Soy tu mayor fan
-      </p>
-      <p class="hero-description">
-        Entrenamiento personalizado diseñado para ti. Resultados reales, transformaciones duraderas.
-      </p>
-    </div>
+    <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-light mb-4 animate-pulse">
+      Soy tu mayor fan
+    </p>
 
-    <!-- CTAs -->
-    <div class="hero-buttons">
+    <p class="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+      Entrenamiento personalizado diseñado para ti. Resultados reales, transformaciones duraderas.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <a 
         href="/contacto" 
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary-dark hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-primary-dark/50 focus:outline-none focus:ring-4 focus:ring-primary-dark/50 w-full sm:w-auto"
-        aria-label="Comenzar tu transformación - Contactar a Jairo Traine"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary-dark hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl w-full sm:w-auto"
       >
-        <span class="text-white font-bold">Empieza Ahora</span>
-        <svg class="w-5 h-5 ml-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        Empieza Ahora
+        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
       </a>
       <a 
         href="#servicios" 
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-black rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 w-full sm:w-auto"
-        aria-label="Ver servicios de entrenamiento personalizado"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-black rounded-full transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
       >
-        <span class="text-white font-bold">Ver Servicios</span>
+        Ver Servicios
       </a>
     </div>
-
   </div>
 </section>
-
-<style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-</style>
