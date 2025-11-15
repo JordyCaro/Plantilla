@@ -6,7 +6,12 @@ const pages: string[] = [
   '/servicios/entrenamiento-personalizado',
   '/servicios/seminarios-talleres',
   '/servicios/planes-nutricionales',
-  '/servicios/asesoria-online'
+  '/servicios/asesoria-online',
+  '/servicios/venta-articulos-deportivos',
+  '/blog',
+  '/blog/errores-comunes-perder-peso',
+  '/blog/mentalidad-ganadora-motivacion',
+  '/blog/rutina-principiantes-gym'
 ];
 
 export const GET: APIRoute = ({ site }) => {

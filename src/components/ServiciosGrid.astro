@@ -31,6 +31,14 @@ const servicios = [
     icono: '💻',
     imagen: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?auto=format&fit=crop&q=60&w=500',
     color: 'from-gray-500 to-gray-600'
+  },
+  {
+    id: 'venta-articulos-deportivos',
+    titulo: 'Venta de Artículos Deportivos',
+    descripcion: 'Equipo y accesorios seleccionados para complementar tu entrenamiento',
+    icono: '🛒',
+    imagen: 'https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&q=60&w=500',
+    color: 'from-gray-500 to-gray-700'
   }
 ];
 ---
@@ -51,53 +59,60 @@ const servicios = [
     </div>
 
     <!-- Services Grid -->
-    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-      {servicios.map((servicio, index) => (
-        <a 
-          href={`/servicios/${servicio.id}`}
-          class="group relative overflow-hidden rounded-3xl bg-white dark:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-        >
-          <!-- Image Background -->
-          <div class="relative h-64 sm:h-72 lg:h-80 overflow-hidden">
-            <img 
-              src={servicio.imagen} 
-              alt={servicio.titulo}
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              fetchpriority="low"
-              width="500"
-              height="400"
-            />
-            <div class={`absolute inset-0 bg-gradient-to-t ${servicio.color} opacity-80 group-hover:opacity-70 transition-opacity duration-500`}></div>
-            
-            <!-- Icon Badge -->
-            <div class="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-              {servicio.icono}
-            </div>
-          </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8 service-grid justify-items-center">
+      {servicios.map((servicio, index) => {
+        const positionClasses = [
+          'lg:col-span-2',
+          'lg:col-span-2',
+          'lg:col-span-2',
+          'lg:col-span-2 lg:col-start-2',
+          'lg:col-span-2 lg:col-start-4'
+        ];
 
-          <!-- Content -->
-          <div class="p-6 sm:p-8">
-            <h3 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-primary-dark dark:group-hover:text-primary-light transition-colors">
-              {servicio.titulo}
-            </h3>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 leading-relaxed">
-              {servicio.descripcion}
-            </p>
-            
-            <!-- Arrow -->
-            <div class="flex items-center text-primary-dark dark:text-primary-light font-bold group-hover:translate-x-2 transition-transform text-sm sm:text-base">
-              <span>Ver detalles</span>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
+        return (
+          <a 
+            href={`/servicios/${servicio.id}`}
+            class={`service-card group relative overflow-hidden rounded-3xl bg-white/5 dark:bg-gray-900/40 shadow-xl transition-transform duration-200 ${positionClasses[index] ?? 'lg:col-span-2'}`}
+          >
+            <span class="glow"></span>
 
-          <!-- Hover Border Effect -->
-          <div class="absolute inset-0 border-4 border-primary-light rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        </a>
-      ))}
+            <div class="relative z-10 flex flex-col h-full">
+              <div class="p-7 sm:p-8 pb-6 sm:pb-8 flex flex-col gap-5 text-center items-center">
+                <div class="flex flex-col gap-3">
+                  <h3 class="text-2xl font-black text-gray-900 dark:text-white group-hover:text-primary-dark dark:group-hover:text-primary-light transition-colors">
+                    {servicio.titulo}
+                  </h3>
+                  <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {servicio.descripcion}
+                  </p>
+                </div>
+
+                <div class="flex items-center text-primary-dark dark:text-primary-light font-semibold group-hover:translate-x-2 transition-transform text-base">
+                  <span>Ver detalles</span>
+                  <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="relative mt-auto px-7 sm:px-8 pb-7 sm:pb-8">
+                <div class="relative rounded-2xl overflow-hidden h-40 sm:h-48 border border-white/10 dark:border-white/5 shadow-inner">
+                  <img 
+                    src={servicio.imagen} 
+                    alt={servicio.titulo}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    fetchpriority="low"
+                    width="500"
+                    height="320"
+                  />
+                  <div class={`absolute inset-0 bg-gradient-to-t ${servicio.color} opacity-40 group-hover:opacity-30 transition-opacity duration-500`}></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        );
+      })}
     </div>
 
     <!-- Bottom CTA -->
@@ -118,3 +133,132 @@ const servicios = [
   </div>
 </section>
 
+<style>
+  .service-grid {
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+  }
+
+  .service-card {
+    --rx: 0deg;
+    --ry: 0deg;
+    --angle: 135deg;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(123, 168, 47, 0.08)
+    );
+  }
+
+  .dark .service-card {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.75),
+      rgba(15, 23, 42, 0.55)
+    );
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(var(--angle), rgba(184, 233, 134, 0.4), rgba(87, 135, 32, 0.1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .dark .service-card::before {
+    background: linear-gradient(var(--angle), rgba(184, 233, 134, 0.3), rgba(184, 233, 134, 0.08));
+  }
+
+  .service-card .glow {
+    position: absolute;
+    top: var(--gy, 50%);
+    left: var(--gx, 50%);
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle at center, rgba(184, 233, 134, 0.18), transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 0;
+  }
+
+  .dark .service-card .glow {
+    background: radial-gradient(circle at center, rgba(123, 168, 47, 0.25), transparent 75%);
+  }
+
+  .service-card:hover .glow {
+    opacity: 1;
+  }
+
+  .service-card a,
+  .service-card img {
+    transform: translateZ(0);
+  }
+
+  @media (max-width: 768px) {
+    .service-grid {
+      perspective: none;
+    }
+
+    .service-card {
+      transform: none !important;
+    }
+
+    .service-card .glow {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  if (!prefersReducedMotion && finePointer) {
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach((card) => {
+      const glow = card.querySelector('.glow');
+
+      card.addEventListener('mousemove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -12;
+        const rotateY = ((x - centerX) / centerX) * 12;
+        const angle = 135 + rotateX - rotateY;
+
+        card.style.setProperty('--rx', `${rotateX}deg`);
+        card.style.setProperty('--ry', `${rotateY}deg`);
+        card.style.setProperty('--angle', `${angle}deg`);
+        card.style.setProperty('--gx', `${x}px`);
+        card.style.setProperty('--gy', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--angle', '135deg');
+      });
+    });
+  }
+</script>

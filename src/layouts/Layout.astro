@@ -16,7 +16,7 @@ interface Props {
 const { 
   title,
   description = "Soy tu mayor fan. Entrenador personal especializado en transformaciones reales. Entreno cuerpos, motivo mentes y construyo hábitos que duran toda la vida.",
-  keywords = "entrenador personal, fitness, gym, entrenamiento personalizado, nutrición, transformación física, motivación, seminarios fitness, Jairo Traine, perder peso, ganar músculo",
+  keywords = "entrenador personal, fitness, entrenamiento personalizado, nutrición, transformación física, motivación, seminarios fitness, planes nutricionales, asesoría online, venta de artículos deportivos, tienda fitness, equipamiento deportivo",
   image = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200",
   url = Astro.url.href,
   type = "website"
@@ -124,6 +124,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "name": "Asesoría Online",
             "description": "Entrenamiento virtual con seguimiento constante"
           }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Venta de Artículos Deportivos",
+            "description": "Equipo y accesorios fitness seleccionados por profesionales para potenciar tu rendimiento"
+          }
         }
       ],
       "address": {
@@ -138,6 +146,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "award": "Entrenador Personal Certificado",
       "alumniOf": "Instituto de Fitness y Nutrición",
       "memberOf": "Asociación Colombiana de Entrenadores Personales"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jairo Traine",
+      "url": "https://jairotraine.com",
+      "inLanguage": "es-ES",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://jairotraine.com/?s={search_term}",
+        "query-input": "required name=search_term"
+      }
     }
     </script>
     
@@ -167,99 +190,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <!-- Inline CSS - Essential only -->
     <style>
-      /* Global overflow prevention */
       html {
-        overflow-x: hidden;
-        max-width: 100vw;
         scroll-behavior: smooth;
       }
-      
+
       body {
         overflow-x: hidden;
-        max-width: 100vw;
-        position: relative;
+        width: 100%;
       }
-      
-      /* Hide scrollbars */
+
       * {
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* IE 10+ */
       }
-      
+
       *::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
       }
-      
-      /* Ensure containers don't exceed viewport */
-      main, section, div, article, aside, nav, header, footer {
-        max-width: 100vw;
-      }
-      
-      /* Fix for images */
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      
-      /* Mobile specific fixes */
-      @media (max-width: 768px) {
-        /* Fix for absolute positioned elements with negative values */
-        .absolute[class*="-left"],
-        .absolute[class*="-right"] {
-          position: relative;
-        }
-        
-        /* Fix for blur decorative elements */
-        .blur-2xl,
-        .blur-3xl {
-          display: none;
-        }
-        
-        /* Ensure text doesn't overflow */
-        h1, h2, h3, h4, h5, h6, p, span {
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-        }
-      }
-      
-      /* Text visibility fixes */
-      .bg-primary-dark span,
-      .bg-primary span,
-      button span,
-      a[href="/contacto"] span,
-      a[href*="wa.me"] span {
-        color: white;
-        font-weight: 700;
-      }
-      
-      .bg-primary-dark svg,
-      .bg-primary svg,
-      button svg,
-      a[href="/contacto"] svg,
-      a[href*="wa.me"] svg {
-        color: white;
-        fill: white;
-        stroke: white;
-      }
-      
-      /* WhatsApp button specific */
-      a[href*="wa.me"] {
-        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        color: white;
-        border: none;
-      }
-      
-      a[href*="wa.me"]:hover {
-        background: linear-gradient(135deg, #128C7E 0%, #0D6B5F 100%);
-      }
     </style>
   </head>
-  <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden" style="scrollbar-width: none; -ms-overflow-style: none; max-width: 100vw; overflow-x: hidden; padding-top: 0;">
+  <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
     <!-- Skip to content link for screen readers -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     
     <Header />
-    <main id="main-content" role="main" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden; margin-top: 0;">
+    <main id="main-content" role="main">
       <slot />
     </main>
     <Footer />

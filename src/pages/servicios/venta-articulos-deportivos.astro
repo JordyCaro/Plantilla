@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Venta de Artículos Deportivos - Jairo Traine"
+  description="Equípate con artículos deportivos seleccionados por un entrenador personal. Calidad profesional para maximizar tus resultados."
+>
+  <main class="pt-20 sm:pt-24">
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&q=80&w=1920" alt="Venta de Artículos Deportivos" class="w-full h-full object-cover" loading="eager" />
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-primary-dark/70"></div>
+      </div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center sm:text-left">
+        <div class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+          🛒 Equipamiento Profesional
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight">
+          Venta de<br/>
+          <span class="text-primary-light">Artículos Deportivos</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-200 max-w-2xl">
+          Todo el equipamiento que necesitas para entrenar contigo desde casa o el gimnasio, seleccionado por un entrenador personal.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-6">
+          ¿Por qué nuestra tienda fitness?
+        </h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+          Más que vender productos, te ofrezco soluciones que acompañan tu proceso de transformación. Cada artículo ha pasado por un proceso de selección para asegurarte calidad, durabilidad y compatibilidad con los entrenamientos que diseñamos.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Selección Profesional</h3>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              Escogemos marcas y productos que resisten entrenamientos intensos, con estándares de gimnasio para que entrenes seguro en casa o en tu box.
+            </p>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Kit Personalizado</h3>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              Armamos kits ideales según tu objetivo: fuerza, resistencia, movilidad o acondicionamiento general. Pide tu lista hecha a tu medida.
+            </p>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Soporte y Uso Correcto</h3>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              No solo vendemos el artículo. Te enseño cómo usarlo y mantenerlo para que dure y sea efectivo dentro de tus rutinas.
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Envíos a Todo el País</h3>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              Gestionamos envíos seguros en Colombia y opciones express para Medellín y municipios cercanos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-10 text-center">
+          Lo más pedido
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              titulo: 'Bandas de Resistencia Pro',
+              descripcion: 'Diferentes niveles para movilidad, activación y fuerza. Incluye guía de ejercicios.',
+              icono: '🟢'
+            },
+            {
+              titulo: 'Kettlebells Premium',
+              descripcion: 'Rango completo desde 8kg a 24kg, recubrimiento antideslizante y base estable.',
+              icono: '🛎️'
+            },
+            {
+              titulo: 'Kit de Calistenia',
+              descripcion: 'Anillas, paralelas plegables y barra ajustable para dominar tu peso corporal.',
+              icono: '🧗'
+            }
+          ].map((producto) => (
+            <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl p-6 shadow-md">
+              <div class="text-3xl mb-4">{producto.icono}</div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{producto.titulo}</h3>
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{producto.descripcion}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-6">
+          ¿Quieres una lista hecha para ti?
+        </h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+          Cuéntame tus objetivos, espacio disponible y presupuesto. Te recomiendo el equipo ideal, con guía de uso y una rutina de bienvenida.
+        </p>
+        <a 
+          href="/contacto" 
+          class="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white bg-primary-dark hover:bg-primary rounded-full shadow-2xl">
+          Solicitar asesoría de compra
+          <svg class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+

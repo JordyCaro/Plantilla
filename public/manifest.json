@@ -1,7 +1,7 @@
 {
   "name": "Jairo Traine - Entrenador Personal",
   "short_name": "Jairo Traine",
-  "description": "Soy tu mayor fan. Entrenamiento personalizado, seminarios y motivación para alcanzar tus objetivos fitness.",
+  "description": "Entrenamiento personalizado, nutrición, motivación y venta de artículos deportivos seleccionados.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -21,7 +21,7 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["health", "fitness", "lifestyle"],
+  "categories": ["health", "fitness", "lifestyle", "shopping", "sports"],
   "lang": "es",
   "scope": "/",
   "prefer_related_applications": false
