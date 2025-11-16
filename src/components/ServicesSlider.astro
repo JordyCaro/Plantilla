@@ -77,7 +77,8 @@
   </div>
 
   <style>
-    .services-swiper { height: 100%; min-height: 100%; position: relative; touch-action: none; background: #000; }
+    /* Permite scroll vertical (pan-y) para que el contenedor padre avance a la siguiente sección */
+    .services-swiper { height: 100%; min-height: 100%; position: relative; touch-action: pan-y; background: #000; }
     .services-swiper .swiper-wrapper { backface-visibility: hidden; transform: translateZ(0); }
     .swiper-slide { margin: 0 !important; }
     .slider-inner { height: 100%; pointer-events: none; }
@@ -143,7 +144,8 @@
           grabCursor: true,
           simulateTouch: true,
           touchStartPreventDefault: false,
-          mousewheel: { forceToAxis: true, sensitivity: 1 },
+          mousewheel: { forceToAxis: true, sensitivity: 1, releaseOnEdges: true },
+          touchReleaseOnEdges: true,
           keyboard: { enabled: true, onlyInViewport: true },
           navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
           pagination: { el: '.swiper-pagination', type: 'progressbar' },
@@ -151,6 +153,22 @@
           observeParents: true
         });
         window.__servicesSwiper = swiper;
+
+        // Cuando llega a los bordes, permitir que el scroll vertical pase al contenedor padre
+        const parentScroller = document.querySelector('.snap-container');
+        // No bloquear wheel vertical
+        container.addEventListener('wheel', (e) => {
+          // Si el movimiento es principalmente vertical, no hagas nada (deja que el contenedor maneje)
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            // En desktops, el wheel ya burbujea; no preventDefault aquí
+            return;
+          }
+        }, { passive: true });
+        // Liberar swipe vertical en móvil (no prevenir por Swiper)
+        container.addEventListener('touchmove', (e) => {
+          // Si el desplazamiento es vertical, permitir burbuja
+          // No llamamos preventDefault
+        }, { passive: true });
       }
       function start(){ loadSwiper().then(init).catch(()=>{}); }
       if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', start); } else { start(); }

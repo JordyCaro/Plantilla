@@ -127,7 +127,7 @@ import ServicesSlider from '../components/ServicesSlider.astro';
   <style>
     /* Snap container */
     .snap-container {
-      height: 100vh;
+      height: 100svh; /* usar svh para móviles con barras dinámicas */
       overflow-y: auto;
       scroll-snap-type: y mandatory;
       overscroll-behavior-y: contain;
@@ -140,7 +140,7 @@ import ServicesSlider from '../components/ServicesSlider.astro';
 
     .snap-section {
       position: relative;
-      height: calc(100vh + 1px); /* solapar 1px para evitar líneas por subpíxel */
+      height: calc(100svh + 1px); /* solapar 1px para evitar líneas por subpíxel y considerar mobile UI */
       margin-bottom: -1px; /* corrige el solape */
       scroll-snap-align: start;
       scroll-snap-stop: always;
