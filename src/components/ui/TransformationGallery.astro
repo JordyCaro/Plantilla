@@ -195,7 +195,7 @@ const transformations = [
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch; 
       width: 100%;
-      max-height: calc(100svh - 160px);
+      max-height: calc(min(100dvh, var(--vh, 1vh) * 100) - 160px);
     }
     #transformations .outerdiv::-webkit-scrollbar{ display:none; }
     .outerdiv{ padding-bottom: 1rem; }

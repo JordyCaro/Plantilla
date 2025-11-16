@@ -166,7 +166,7 @@ const faqs = [
     .faq-wrap {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      max-height: calc(100svh - 200px);
+      max-height: calc(min(100dvh, var(--vh, 1vh) * 100) - 200px);
     }
     .faq-wrap::-webkit-scrollbar { display: none; }
   }

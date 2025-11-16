@@ -147,7 +147,7 @@ const blogPosts = [
   .track{ display:flex; gap:var(--gap); align-items:center; justify-content:center; scroll-behavior:smooth; scroll-snap-type:x mandatory; padding: 0 0 1rem; height:100%; width:100%; }
   .track::-webkit-scrollbar{ display:none; }
 
-  .project-card{ position:relative; flex:0 0 var(--closed); height:min(34rem, 72vh); border-radius:1rem; overflow:hidden; cursor:pointer; transition:flex-basis var(--speed), transform var(--speed); }
+  .project-card{ position:relative; flex:0 0 var(--closed); height:min(32rem, 60dvh); border-radius:1rem; overflow:hidden; cursor:pointer; transition:flex-basis var(--speed), transform var(--speed); }
   .project-card[active]{ flex-basis: var(--open); transform: translateY(-6px); box-shadow:0 18px 55px rgba(0,0,0,.45); }
   .project-card__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: brightness(.75) saturate(75%); transition: filter .3s, transform var(--speed); }
   .project-card:hover .project-card__bg{ filter: brightness(.9) saturate(100%); transform: scale(1.06); }
@@ -180,7 +180,7 @@ const blogPosts = [
       flex: 1 1 auto; 
       height: auto; 
       min-height: 40vh;
-      max-height: calc(100svh - 180px); 
+      max-height: calc(min(100dvh, var(--vh, 1vh) * 100) - 180px); 
       width: 100%;
     }
     .track{ flex-direction:column; align-items:stretch; scroll-snap-type: y mandatory; gap:.8rem; padding-bottom:1rem; height:auto; min-height: 1px; width:100%; }

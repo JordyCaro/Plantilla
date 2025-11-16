@@ -105,14 +105,15 @@
   /* Móvil: logos protagonistas con margen negativo controlado */
   @media (max-width: 767px) {
     .logo-hero {
-      height: 30rem !important; /* isotipo grande */
-      margin-top: -25%;
-      margin-bottom: -40%;
+      height: clamp(10rem, 30svh, 16rem) !important;
+      margin-top: 0;
+      margin-bottom: 0;
     }
     .wordmark-hero {
-      height: 20rem !important; /* nombre grande */
-      margin-top: -17%;
-      margin-bottom: -20%;
+      height: clamp(3.5rem, 10svh, 5.5rem) !important;
+      margin-top: 0;
+      margin-bottom: 0;
+      max-width: 90vw;
     }
   }
 </style>
