@@ -314,7 +314,18 @@ const formFields = [
       this.closeModalBtn.addEventListener('click', () => this.closeModal());
       
       // Real-time validation
-      this.form.addEventListener('input', (e) => this.validateField(e.target as HTMLInputElement));
+      this.form.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.type === 'email') {
+          this.validateField(target);
+        } else if (target.type === 'tel') {
+          this.validateField(target);
+        }
+      });
+      
+      this.form.addEventListener('blur', (e) => {
+        this.validateField(e.target as HTMLInputElement);
+      }, true);
     }
 
     private nextStep() {
@@ -379,6 +390,11 @@ const formFields = [
         return false;
       }
 
+      if (field.type === 'tel' && field.value && !this.isValidPhone(field.value)) {
+        this.showError(field, errorMessage, 'Ingresa un teléfono válido (ej: +57 300 123 4567)');
+        return false;
+      }
+
       this.hideError(field, errorMessage);
       return true;
     }
@@ -401,8 +417,14 @@ const formFields = [
     }
 
     private isValidEmail(email: string): boolean {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
       return emailRegex.test(email);
+    }
+
+    private isValidPhone(phone: string): boolean {
+      // Accepts international format: +XX XXX XXX XXXX or without +
+      const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,9}$/;
+      return phone ? phoneRegex.test(phone.replace(/\s/g, '')) : true;
     }
 
     private async submitForm() {

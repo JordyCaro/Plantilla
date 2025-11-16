@@ -5,7 +5,7 @@ const testimonials = [
   {
     id: 1,
     name: "María González",
-    role: "Cliente desde 2022",
+    role: "Cliente Transformada",
     content: "Jairo cambió completamente mi perspectiva sobre el fitness. No solo perdí 20kg, sino que gané una confianza que nunca había tenido. Su enfoque personalizado y su motivación constante hicieron la diferencia.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
     rating: 5,
@@ -37,98 +37,74 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
     rating: 5,
     result: "Transformación completa a los 45"
-  },
-  {
-    id: 5,
-    name: "Ana Herrera",
-    role: "Madre de Familia",
-    content: "Ser madre de dos niños pequeños me dejaba sin tiempo para mí. Jairo me enseñó a entrenar de manera eficiente en casa y a priorizar mi salud. Ahora soy un ejemplo para mis hijos.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    result: "Encuentra tiempo para su salud"
-  },
-  {
-    id: 6,
-    name: "Miguel Torres",
-    role: "Estudiante Universitario",
-    content: "Como estudiante, no tenía mucho dinero para un entrenador personal. Los seminarios de Jairo me dieron acceso a conocimiento de calidad a un precio accesible. Aprendí más en un seminario que en meses de YouTube.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    result: "Aprendió técnicas profesionales"
   }
 ];
 ---
 
-<section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <span class="inline-block px-4 py-2 bg-primary-light/10 text-primary-dark dark:text-primary-light rounded-full text-sm font-bold uppercase tracking-wider mb-4">
-        Testimonios Reales
-      </span>
-      <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-        Lo que dicen mis <span class="text-primary-dark dark:text-primary-light">Clientes</span>
+<section id="testimonials" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 dark:bg-black border-y border-white/10">
+  <div class="w-full max-w-[1400px] mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4">
+        REVIEWS FROM <span class="text-primary-light">CLIENTS</span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-        Historias reales de transformación de personas que confiaron en el proceso y cambiaron sus vidas
+      <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+        Historias reales de transformación de personas que confiaron en el proceso
       </p>
     </div>
 
-    <TestimonialSlider testimonials={testimonials} client:visible />
+    <!-- Testimonial Section with Background Image -->
+    <div class="relative h-[500px] sm:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden border border-white/10">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
+          alt="Persona entrenando en el gym"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/95"></div>
+      </div>
+
+      <!-- Testimonial Box Overlay -->
+      <div class="absolute inset-0 flex items-center justify-center lg:justify-end px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-12">
+        <TestimonialSlider testimonials={testimonials} client:visible autoPlayInterval={12000} />
+      </div>
+    </div>
 
     <!-- Stats Section -->
-    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div class="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
       <div class="space-y-2">
-        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+        <div class="text-3xl lg:text-4xl font-black text-primary-light">
           500+
         </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+        <div class="text-xs sm:text-sm text-gray-300 uppercase tracking-wider">
           Clientes Transformados
         </div>
       </div>
       <div class="space-y-2">
-        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+        <div class="text-3xl lg:text-4xl font-black text-primary-light">
           98%
         </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+        <div class="text-xs sm:text-sm text-gray-300 uppercase tracking-wider">
           Satisfacción
         </div>
       </div>
       <div class="space-y-2">
-        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+        <div class="text-3xl lg:text-4xl font-black text-primary-light">
           8+
         </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+        <div class="text-xs sm:text-sm text-gray-300 uppercase tracking-wider">
           Años de Experiencia
         </div>
       </div>
       <div class="space-y-2">
-        <div class="text-3xl lg:text-4xl font-black text-primary-dark dark:text-primary-light">
+        <div class="text-3xl lg:text-4xl font-black text-primary-light">
           5★
         </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+        <div class="text-xs sm:text-sm text-gray-300 uppercase tracking-wider">
           Calificación Promedio
         </div>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="mt-16 text-center">
-      <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          ¿Listo para ser la próxima historia de éxito?
-        </h3>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-          Únete a cientos de personas que ya transformaron sus vidas con mi ayuda
-        </p>
-        <a 
-          href="/contacto" 
-          class="inline-flex items-center px-8 py-4 bg-primary-dark hover:bg-primary text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-        >
-          Comienza Tu Transformación
-          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </a>
       </div>
     </div>
   </div>

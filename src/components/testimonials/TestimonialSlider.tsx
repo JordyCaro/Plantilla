@@ -19,19 +19,53 @@ interface Props {
 export default function TestimonialSlider({ 
   testimonials, 
   autoPlay = true, 
-  autoPlayInterval = 5000 
+  autoPlayInterval = 12000 
 }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Usamos un índice interno mayor para el efecto infinito
+  // El índice 0 es un duplicado del último, los índices 1-N son los reales, y el índice N+1 es un duplicado del primero
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Crear array con duplicados para el efecto infinito
+  // [último, ...originales, primero]
+  const infiniteTestimonials = [
+    testimonials[testimonials.length - 1], // Duplicado del último al inicio
+    ...testimonials,
+    testimonials[0] // Duplicado del primero al final
+  ];
+
+  const totalSlides = infiniteTestimonials.length;
+  // Convertir índice infinito a índice real (0-based)
+  // índice 0 → último testimonio (testimonials.length - 1)
+  // índices 1-N → testimonios reales (0 a N-1)
+  // índice N+1 → primer testimonio (0)
+  const getRealIndex = (infIndex: number): number => {
+    if (infIndex === 0) return testimonials.length - 1;
+    if (infIndex >= testimonials.length + 1) return 0;
+    return infIndex - 1;
+  };
+  const realIndex = getRealIndex(currentIndex);
 
   useEffect(() => {
     if (isPlaying && autoPlay) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => 
-          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-        );
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          // Si llegamos al último slide (duplicado), saltamos sin transición al primero real
+          if (nextIndex >= totalSlides - 1) {
+            setTimeout(() => {
+              setIsTransitioning(false);
+              setCurrentIndex(1);
+              setTimeout(() => setIsTransitioning(true), 50);
+            }, 500);
+            return totalSlides - 1;
+          }
+          return nextIndex;
+        });
       }, autoPlayInterval);
     }
 
@@ -40,167 +74,174 @@ export default function TestimonialSlider({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, autoPlay, autoPlayInterval, testimonials.length]);
+  }, [isPlaying, autoPlay, autoPlayInterval, totalSlides]);
 
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
+  // Resetear posición cuando llegamos a los extremos sin transición
+  useEffect(() => {
+    if (!isTransitioning && containerRef.current) {
+      containerRef.current.style.transition = 'none';
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.style.transition = '';
+          setIsTransitioning(true);
+        }
+      }, 50);
+    }
+  }, [currentIndex, isTransitioning]);
+
+  const goToSlide = (direction: 'next' | 'prev') => {
     setIsPlaying(false);
     
-    // Resume auto-play after 10 seconds
-    setTimeout(() => setIsPlaying(true), 10000);
+    if (direction === 'next') {
+      const nextIndex = currentIndex + 1;
+      if (nextIndex >= totalSlides - 1) {
+        // Saltar al duplicado del último, luego resetear sin transición
+        setCurrentIndex(nextIndex);
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setCurrentIndex(1);
+          setTimeout(() => {
+            setIsTransitioning(true);
+            setIsPlaying(true);
+          }, 50);
+        }, 500);
+      } else {
+        setCurrentIndex(nextIndex);
+        setTimeout(() => setIsPlaying(true), 10000);
+      }
+    } else {
+      const prevIndex = currentIndex - 1;
+      if (prevIndex <= 0) {
+        // Saltar al duplicado del primero, luego resetear sin transición
+        setCurrentIndex(prevIndex);
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setCurrentIndex(testimonials.length);
+          setTimeout(() => {
+            setIsTransitioning(true);
+            setIsPlaying(true);
+          }, 50);
+        }, 500);
+      } else {
+        setCurrentIndex(prevIndex);
+        setTimeout(() => setIsPlaying(true), 10000);
+      }
+    }
   };
 
   const nextSlide = () => {
-    goToSlide(currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1);
+    goToSlide('next');
   };
 
   const prevSlide = () => {
-    goToSlide(currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1);
+    goToSlide('prev');
   };
 
   const toggleAutoPlay = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Validar que hay testimonios
+  if (!testimonials || testimonials.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="testimonial-slider relative max-w-4xl mx-auto">
-      {/* Main Testimonial */}
+    <div className="testimonial-slider relative w-full max-w-xl lg:max-w-2xl mx-auto lg:mx-0 lg:mr-0">
+      {/* Main Testimonial Box - Green Card */}
       <div 
         ref={sliderRef}
-        className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-xl"
+        className="relative overflow-hidden rounded-xl shadow-2xl"
+        style={{ backgroundColor: '#7BA82F', minHeight: '400px' }}
       >
-        <div 
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div key={testimonial.id} className="w-full flex-shrink-0">
-              <div className="p-8 md:p-12">
-                <div className="flex flex-col md:flex-row items-center gap-8">
-                  {/* Image */}
-                  <div className="flex-shrink-0">
-                    <div className="relative">
+        {/* Slider Container with overflow hidden */}
+        <div className="relative overflow-hidden w-full" style={{ minHeight: '400px' }}>
+          <div 
+            ref={containerRef}
+            className="flex h-full"
+            style={{ 
+              transform: `translateX(-${currentIndex * (100 / totalSlides)}%)`,
+              transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
+              width: `${totalSlides * 100}%`,
+              display: 'flex'
+            }}
+          >
+            {infiniteTestimonials.map((testimonial, index) => (
+              <div 
+                key={`${testimonial.id}-${index}`}
+                className="flex-shrink-0 h-full"
+                style={{ 
+                  width: `${100 / totalSlides}%`,
+                  minWidth: `${100 / totalSlides}%`,
+                  maxWidth: `${100 / totalSlides}%`,
+                  flex: `0 0 ${100 / totalSlides}%`
+                }}
+              >
+                <div className="relative p-6 sm:p-8 lg:p-10 h-full w-full flex flex-col">
+                  {/* Quote Icon - Top Left */}
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 z-10">
+                    <svg 
+                      className="w-12 h-12 sm:w-16 sm:h-16 text-gray-900 opacity-20" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                    </svg>
+                  </div>
+
+
+                  {/* Content */}
+                  <div className="relative pt-6 sm:pt-10 pb-14 sm:pb-16 lg:pb-20">
+                    {/* Testimonial Text */}
+                    <blockquote className="text-sm sm:text-base lg:text-lg font-black text-gray-900 uppercase leading-relaxed mb-6 sm:mb-8 tracking-tight">
+                      {testimonial.content.toUpperCase()}
+                    </blockquote>
+
+                    {/* Author Info - Bottom Left */}
+                    <div className="flex items-center gap-3">
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-24 h-24 rounded-full object-cover shadow-lg"
-                        loading="lazy"
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-gray-900/30 flex-shrink-0"
+                        loading={index === 0 || index === totalSlides - 1 ? 'eager' : 'lazy'}
                       />
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary-dark rounded-full flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                        </svg>
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-black text-gray-900 uppercase tracking-wide">
+                          {testimonial.name.toUpperCase()}
+                        </h4>
+                        <p className="text-xs text-gray-700 font-semibold uppercase">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="flex-1 text-center md:text-left">
-                    {/* Rating */}
-                    <div className="flex justify-center md:justify-start gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className={`w-5 h-5 ${
-                            i < testimonial.rating 
-                              ? 'text-yellow-400' 
-                              : 'text-gray-300 dark:text-gray-600'
-                          }`}
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                      ))}
-                    </div>
-
-                    {/* Quote */}
-                    <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 italic">
-                      "{testimonial.content}"
-                    </blockquote>
-
-                    {/* Author */}
-                    <div className="space-y-1">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-primary-dark dark:text-primary-light font-semibold">
-                        {testimonial.role}
-                      </p>
-                      {testimonial.result && (
-                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                          {testimonial.result}
-                        </p>
-                      )}
-                    </div>
+                  {/* Navigation Arrows - Bottom Right */}
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6 flex gap-2 z-10">
+                    <button
+                      onClick={prevSlide}
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-900 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-gray-800 shadow-lg"
+                      aria-label="Testimonio anterior"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-900 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-gray-800 shadow-lg"
+                      aria-label="Siguiente testimonio"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-4 mt-8">
-        {/* Previous Button */}
-        <button
-          onClick={prevSlide}
-          className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-          aria-label="Testimonio anterior"
-        >
-          <svg className="w-6 h-6 text-primary-dark dark:text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        {/* Dots Indicator */}
-        <div className="flex gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-primary-dark dark:bg-primary-light scale-125'
-                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-              }`}
-              aria-label={`Ir al testimonio ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextSlide}
-          className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-          aria-label="Siguiente testimonio"
-        >
-          <svg className="w-6 h-6 text-primary-dark dark:text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        {/* Auto-play Toggle */}
-        <button
-          onClick={toggleAutoPlay}
-          className={`p-3 rounded-full transition-all duration-300 ${
-            isPlaying 
-              ? 'bg-primary-dark text-white' 
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
-          }`}
-          aria-label={isPlaying ? 'Pausar auto-reproducción' : 'Reproducir automáticamente'}
-        >
-          {isPlaying ? (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-            </svg>
-          ) : (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          )}
-        </button>
       </div>
     </div>
   );

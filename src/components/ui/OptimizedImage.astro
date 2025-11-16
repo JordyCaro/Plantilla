@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 export interface Props {
-  src: string;
+  src: string | ImageMetadata;
   alt: string;
   width?: number;
   height?: number;
@@ -31,24 +32,43 @@ const {
 
 // Generate blur placeholder if not provided
 const defaultBlurDataURL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=';
+
+// Check if src is a URL string or ImageMetadata
+const isImageMetadata = typeof src === 'object' && 'src' in src;
+const imageSrc = isImageMetadata ? src : src;
+const shouldUseAstroImage = isImageMetadata || (!src.startsWith('http') && !src.startsWith('/'));
 ---
 
 <div class="optimized-image-container">
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    class={`optimized-image ${className}`}
-    loading={loading}
-    quality={quality}
-    format={format}
-    sizes={sizes}
-    {...(placeholder === 'blur' && { 
-      placeholder: 'blur',
-      blurDataURL: blurDataURL || defaultBlurDataURL
-    })}
-  />
+  {shouldUseAstroImage && typeof imageSrc !== 'string' ? (
+    <Image
+      src={imageSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      class={`optimized-image ${className}`}
+      loading={loading}
+      quality={quality}
+      format={format}
+      sizes={sizes}
+      {...(placeholder === 'blur' && { 
+        placeholder: 'blur',
+        blurDataURL: blurDataURL || defaultBlurDataURL
+      })}
+    />
+  ) : (
+    <img
+      src={typeof imageSrc === 'string' ? imageSrc : imageSrc.src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={`optimized-image ${className}`}
+      loading={loading}
+      fetchpriority={loading === 'eager' ? 'high' : 'low'}
+      sizes={sizes}
+      decoding="async"
+    />
+  )}
 </div>
 
 <style>
@@ -83,49 +103,73 @@ const defaultBlurDataURL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2
 </style>
 
 <script>
-  function initOptimizedImages() {
-    const images = document.querySelectorAll('.optimized-image[loading="lazy"]');
-    
-    const imageObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement;
-            
-            // Add loaded class when image loads
-            img.addEventListener('load', () => {
-              img.classList.add('loaded');
-            });
-            
-            // If image is already loaded (cached), add class immediately
-            if (img.complete) {
-              img.classList.add('loaded');
-            }
-            
-            imageObserver.unobserve(img);
-          }
-        });
-      },
-      {
-        rootMargin: '50px 0px',
-        threshold: 0.01
+  (function() {
+    let imageObserver: IntersectionObserver | null = null;
+
+    function initOptimizedImages() {
+      // Cleanup existing observer
+      if (imageObserver) {
+        imageObserver.disconnect();
+        imageObserver = null;
       }
-    );
 
-    images.forEach((img) => {
-      imageObserver.observe(img);
+      const images = document.querySelectorAll<HTMLImageElement>('.optimized-image[loading="lazy"]');
+      
+      if (images.length === 0) return;
+      
+      imageObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target as HTMLImageElement;
+              
+              // Add loaded class when image loads
+              const handleLoad = () => {
+                img.classList.add('loaded');
+                img.removeEventListener('load', handleLoad);
+              };
+              
+              img.addEventListener('load', handleLoad);
+              
+              // If image is already loaded (cached), add class immediately
+              if (img.complete && img.naturalHeight !== 0) {
+                img.classList.add('loaded');
+                img.removeEventListener('load', handleLoad);
+              }
+              
+              imageObserver?.unobserve(img);
+            }
+          });
+        },
+        {
+          rootMargin: '50px 0px',
+          threshold: 0.01
+        }
+      );
+
+      images.forEach((img) => {
+        imageObserver?.observe(img);
+      });
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initOptimizedImages);
+    } else {
+      initOptimizedImages();
+    }
+
+    // Reinitialize after Astro transitions
+    document.addEventListener('astro:after-swap', initOptimizedImages);
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (imageObserver) {
+        imageObserver.disconnect();
+        imageObserver = null;
+      }
     });
-  }
-
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initOptimizedImages);
-  } else {
-    initOptimizedImages();
-  }
-
-  // Reinitialize after Astro transitions
-  document.addEventListener('astro:after-swap', initOptimizedImages);
+  })();
 </script>
 
 

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
 import AboutUs from '../components/AboutUs.astro';
 import ServiciosGrid from '../components/ServiciosGrid.astro';
 import TeamSection from '../components/TeamSection.astro';
@@ -8,7 +9,6 @@ import TransformationGallery from '../components/ui/TransformationGallery.astro'
 import TestimonialsSection from '../components/TestimonialsSection.astro';
 import FAQAccordion from '../components/ui/FAQAccordion.astro';
 import BlogSection from '../components/BlogSection.astro';
-import ExitIntentPopup from '../components/ui/ExitIntentPopup.astro';
 import BackToTop from '../components/ui/BackToTop.astro';
 import ScrollReveal from '../components/animations/ScrollReveal.astro';
 ---
@@ -18,14 +18,18 @@ import ScrollReveal from '../components/animations/ScrollReveal.astro';
   description="Transforma tu cuerpo y tu vida con Jairo Traine. Entrenamiento personalizado, seminarios motivacionales y planes adaptados a tus objetivos. Soy tu mayor fan."
   keywords="entrenador personal, fitness, gym, entrenamiento personalizado, nutrición, transformación física, motivación, seminarios fitness, Jairo Traine"
 >
-  <main class="pt-20 sm:pt-24">
+  <main>
     <HeroSection />
     
     <ScrollReveal>
-      <AboutUs />
+      <WhyChooseUs />
     </ScrollReveal>
     
     <ScrollReveal delay={200}>
+      <AboutUs />
+    </ScrollReveal>
+    
+    <ScrollReveal delay={300}>
       <ServiciosGrid />
     </ScrollReveal>
     
@@ -51,30 +55,40 @@ import ScrollReveal from '../components/animations/ScrollReveal.astro';
 
     <!-- CTA Final Section -->
     <ScrollReveal>
-      <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-dark via-primary to-primary-light">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-4xl lg:text-5xl font-black text-white mb-6">
-            Tu Transformación Comienza Hoy
+      <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
+            alt="Gimnasio"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80"></div>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-[1400px] mx-auto text-center">
+          <h2 class="text-4xl lg:text-6xl font-black text-white mb-6">
+            TU TRANSFORMACIÓN <span class="text-primary-light">COMIENZA HOY</span>
           </h2>
-          <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+          <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
             No esperes el momento perfecto. El momento perfecto es ahora. Da el primer paso hacia la mejor versión de ti mismo.
           </p>
           <div class="flex flex-col sm:flex-row gap-6 justify-center">
             <a 
               href="/contacto" 
-              class="inline-flex items-center justify-center px-10 py-5 bg-white text-primary-dark font-black rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-2xl text-lg"
-              style="color: #7BA82F !important;"
+              class="inline-flex items-center justify-center px-10 py-5 bg-primary-light text-gray-900 font-black rounded-lg hover:bg-primary transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-lg"
             >
-              <span style="color: #7BA82F !important; font-weight: 900 !important;">Agenda Tu Sesión Gratuita</span>
-              <svg class="w-6 h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: #7BA82F !important;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <span class="font-black">OBTÉN TU PRIMERA SESIÓN GRATIS</span>
+              <svg class="w-6 h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </a>
             <a 
               href="https://wa.me/573001234567" 
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center px-10 py-5 font-bold rounded-full transition-all duration-300 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
+              class="inline-flex items-center justify-center px-10 py-5 font-bold rounded-lg transition-all duration-300 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
               style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; min-width: 200px; border: none;"
             >
               <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" style="color: white;">
@@ -91,7 +105,4 @@ import ScrollReveal from '../components/animations/ScrollReveal.astro';
   
   <!-- Back to Top Button -->
   <BackToTop />
-  
-  <!-- Exit Intent Popup -->
-  <ExitIntentPopup />
 </Layout>

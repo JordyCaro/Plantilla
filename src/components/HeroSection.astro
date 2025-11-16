@@ -1,51 +1,118 @@
 ---
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section class="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
     <img
-      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=60&w=600"
+      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
       alt="Gimnasio moderno"
       class="w-full h-full object-cover"
       loading="eager"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/70 to-black/80"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-      <span class="block">Transforma</span>
-      <span class="block text-primary-light">Tu Cuerpo y</span>
-      <span class="block">Tu Mente</span>
-        </h1>
+  <div class="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-20">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Logo -->
+      <div class="mb-4 sm:mb-8 md:mb-10 lg:mb-6 xl:mb-4 flex flex-col items-center justify-center">
+        <img 
+          src="/logo-blanco.png" 
+          alt="Jairo Traine - Entrenador Personal" 
+          class="h-40 sm:h-40 md:h-52 lg:h-64 xl:h-72 w-auto logo-hero"
+          width="600"
+          height="288"
+        />
+        <!-- Nombre (wordmark) debajo del isotipo -->
+        <img
+          src="/nombre-blanco.png"
+          alt="Jairo Traine - Marca"
+          class="mt-2 sm:mt-4 h-12 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto wordmark-hero"
+          width="360"
+          height="64"
+        />
+        <!-- Brandline: Soy tu MAYOR fan -->
+        <div class="mt-3 sm:mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+          <span class="text-white">Soy tu </span>
+          <span class="text-primary-light">mayor</span>
+          <span class="text-white"> fan</span>
+        </div>
+      </div>
+      
+      <!-- Descripción -->
+      <p class="text-base sm:text-lg text-gray-200 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
+        Te ayudo a lograr el cambio físico que deseas con entrenamientos personalizados, planes de alimentación, asesoría de suplementos y un seguimiento real para que consigas resultados duraderos.
+      </p>
 
-    <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-light mb-4 animate-pulse">
-      Soy tu mayor fan
-    </p>
-
-    <p class="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-      Entrenamiento personalizado diseñado para ti. Resultados reales, transformaciones duraderas.
-        </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a 
-            href="/contacto" 
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary-dark hover:bg-primary rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl w-full sm:w-auto"
-          >
-        Empieza Ahora
-            <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-          <a 
-        href="#servicios" 
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-black rounded-full transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
-      >
-        Ver Servicios
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href="/contacto" 
+          class="inline-flex items-center justify-center px-10 py-4 text-lg font-black text-gray-900 bg-primary-light hover:bg-primary rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto"
+        >
+          Empieza Ahora
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a 
+          href="#servicios" 
+          class="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-gray-900 rounded-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+        >
+          Ver Servicios
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Asegurar tamaño y margen negativo controlado solo en pantallas grandes para el isotipo */
+  @media (min-width: 1280px) {
+    .logo-hero {
+      height: 30rem !important;
+      margin-top: -10%;
+      margin-bottom: -10%;
+    }
+  }
+
+  /* Wordmark responsive y con margen negativo en pantallas grandes */
+  @media (min-width: 1280px) {
+    .wordmark-hero {
+      height: 30rem !important;
+      margin-top: -25%;
+      margin-bottom: -15%;
+      max-width: 90vw;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .wordmark-hero {
+      height: 18rem !important;
+      margin-top: -10%;
+      margin-bottom: -8%;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .wordmark-hero {
+      height: 12rem !important;
+      margin-top: -6%;
+      margin-bottom: -4%;
+    }
+  }
+  
+  /* Móvil: logos protagonistas con margen negativo controlado */
+  @media (max-width: 767px) {
+    .logo-hero {
+      height: 30rem !important; /* isotipo grande */
+      margin-top: -25%;
+      margin-bottom: -40%;
+    }
+    .wordmark-hero {
+      height: 20rem !important; /* nombre grande */
+      margin-top: -17%;
+      margin-bottom: -20%;
+    }
+  }
+</style>

@@ -26,7 +26,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -37,9 +37,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="theme-color" content="#7BA82F" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="shortcut icon" href="/logo.png" />
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -130,7 +130,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "itemOffered": {
             "@type": "Service",
             "name": "Venta de Artículos Deportivos",
-            "description": "Equipo y accesorios fitness seleccionados por profesionales para potenciar tu rendimiento"
+            "description": "Equipo y accesorios fitness seleccionados personalmente por mí para potenciar tu rendimiento"
           }
         }
       ],
@@ -207,13 +207,47 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       *::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
       }
+
+      /* Skip to content link - Accessibility */
+      .skip-link {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        background: var(--tw-color-primary-dark, #7BA82F);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-weight: bold;
+        z-index: 100;
+        border-radius: 0 0 0.5rem 0;
+        transition: top 0.3s;
+      }
+
+      .skip-link:focus {
+        top: 0;
+        outline: 3px solid var(--tw-color-primary-light, #B8E986);
+        outline-offset: 2px;
+      }
+
+      /* Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        
+        html {
+          scroll-behavior: auto;
+        }
+      }
     </style>
   </head>
   <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
     <!-- Skip to content link for screen readers -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     
-    <Header />
+    <!-- <Header /> -->
     <main id="main-content" role="main">
       <slot />
     </main>
@@ -221,6 +255,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </body>
 </html>
 
+<!-- TEMA OSCURO POR DEFECTO - Código comentado pero no eliminado
 <script is:inline>
   function getThemePreference() {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -247,3 +282,4 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     window.addEventListener('storage', updateTheme);
   }
 </script>
+-->

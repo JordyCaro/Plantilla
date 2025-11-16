@@ -1,78 +1,139 @@
 ---
-import ThemeToggle from './ThemeToggle';
-import ScrollProgress from './ui/ScrollProgress.astro';
+// import ThemeToggle from './ThemeToggle';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo y menú móvil -->
-      <div class="flex items-center gap-4">
-        <a href="/" class="text-xl font-black text-primary-dark dark:text-primary-light">
-          JAIRO TRAINE
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-sm border-b border-gray-200 dark:border-gray-800">
+  <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 sm:h-20">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
+          <img 
+            src="/logo-blanco.png" 
+            alt="Jairo Traine - Entrenador Personal" 
+            class="h-20 sm:h-24 md:h-28 lg:h-32 w-auto"
+            width="280"
+            height="128"
+          />
+        </a>
+      </div>
+
+      <!-- Navegación desktop -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Navegación principal">
+        <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium uppercase text-sm tracking-wider transition-colors">INICIO</a>
+        <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium uppercase text-sm tracking-wider transition-colors">SOBRE MÍ</a>
+        <a href="#servicios" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium uppercase text-sm tracking-wider transition-colors">SERVICIOS</a>
+        <a href="#testimonials" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium uppercase text-sm tracking-wider transition-colors">TESTIMONIOS</a>
+        <a href="/contacto" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium uppercase text-sm tracking-wider transition-colors">CONTACTO</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- <ThemeToggle client:load /> -->
+        <a href="/contacto" class="hidden md:inline-flex items-center px-6 py-2.5 text-sm font-bold text-white bg-primary-dark hover:bg-primary rounded-lg shadow-md hover:shadow-lg transition-all">
+          CONTÁCTAME
         </a>
         <!-- Botón hamburguesa -->
         <button 
           id="menu-toggle" 
-          class="md:hidden p-2 text-gray-700 dark:text-gray-300"
+          class="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light"
           aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h-8" />
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-4 6h-8" />
           </svg>
         </button>
-      </div>
-
-      <!-- Navegación desktop -->
-      <nav class="hidden md:flex items-center gap-8">
-        <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium">Inicio</a>
-        <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium">Sobre Mí</a>
-        <a href="#servicios" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light font-medium">Servicios</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <ThemeToggle client:load />
-        <a href="/contacto" class="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary-dark hover:bg-primary rounded-lg shadow-md">
-          Contáctame
-        </a>
       </div>
     </div>
 
     <!-- Menú móvil -->
-    <nav id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+    <nav id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200 dark:border-gray-700" aria-label="Navegación móvil">
       <div class="flex flex-col gap-4">
-        <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark py-2">Inicio</a>
-        <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark py-2">Sobre Mí</a>
-        <a href="#servicios" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark py-2">Servicios</a>
-        <a href="/contacto" class="inline-flex items-center justify-center px-6 py-3 text-white bg-primary-dark hover:bg-primary rounded-lg shadow-md">
-          Contáctame
+        <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light py-2 font-medium uppercase text-sm">INICIO</a>
+        <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light py-2 font-medium uppercase text-sm">SOBRE MÍ</a>
+        <a href="#servicios" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light py-2 font-medium uppercase text-sm">SERVICIOS</a>
+        <a href="#testimonials" class="text-gray-700 dark:text-gray-300 hover:text-primary-dark dark:hover:text-primary-light py-2 font-medium uppercase text-sm">TESTIMONIOS</a>
+        <a href="/contacto" class="inline-flex items-center justify-center px-6 py-3 text-white bg-primary-dark hover:bg-primary rounded-lg shadow-md font-bold">
+          CONTÁCTAME
         </a>
       </div>
     </nav>
   </div>
-  
-  <ScrollProgress />
 </header>
 
 <script>
-  function initMenu() {
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
+  (function() {
+    let toggleHandler: ((e: MouseEvent) => void) | null = null;
+    let clickOutsideHandler: ((e: MouseEvent) => void) | null = null;
+    let escapeHandler: ((e: KeyboardEvent) => void) | null = null;
+
+    function initMenu() {
+      const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+      const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+      
+      if (!toggle || !menu) return;
+      
+      // Remove existing listeners
+      if (toggleHandler) {
+        toggle.removeEventListener('click', toggleHandler);
+        if (clickOutsideHandler) {
+          document.removeEventListener('click', clickOutsideHandler);
+        }
+        if (escapeHandler) {
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      }
+      
+      const toggleMenu = (e?: MouseEvent) => {
+        e?.stopPropagation();
+        const isHidden = menu.classList.contains('hidden');
         menu.classList.toggle('hidden');
-      });
+        toggle.setAttribute('aria-expanded', (!isHidden).toString());
+      };
+      
+      toggleHandler = toggleMenu;
+      toggle.addEventListener('click', toggleHandler);
       
       // Cerrar menú al hacer click en un link
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
+      const links = menu.querySelectorAll('a');
+      links.forEach(link => {
+        const linkHandler = () => {
           menu.classList.add('hidden');
-        });
+          toggle.setAttribute('aria-expanded', 'false');
+        };
+        link.addEventListener('click', linkHandler);
       });
+
+      // Close menu when clicking outside
+      clickOutsideHandler = (e: MouseEvent) => {
+        if (!menu.classList.contains('hidden') && 
+            !menu.contains(e.target as Node) && 
+            !toggle.contains(e.target as Node)) {
+          menu.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      };
+      document.addEventListener('click', clickOutsideHandler);
+
+      // Close menu on Escape key
+      escapeHandler = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.focus();
+        }
+      };
+      document.addEventListener('keydown', escapeHandler);
     }
-  }
-  
-  document.addEventListener('DOMContentLoaded', initMenu);
-  document.addEventListener('astro:page-load', initMenu);
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMenu);
+    } else {
+      initMenu();
+    }
+    
+    document.addEventListener('astro:page-load', initMenu);
+  })();
 </script>
+
