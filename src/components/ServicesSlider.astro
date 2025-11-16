@@ -183,10 +183,25 @@
         height: 100%;
         min-height: 100%;
       }
+      .swiper-slide {
+        align-items: flex-start;
+        justify-content: center;
+      }
       .swiper-content {
-        margin-top: clamp(0.25rem, 3svh, 1.5rem);
-        padding: 0 1rem;
-        padding-bottom: clamp(0.25rem, 2svh, 1rem);
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 0;
+        padding: clamp(0.25rem, 2svh, 0.75rem) 1rem clamp(0.125rem, 1svh, 0.5rem);
+        max-width: 100%;
+        width: 100%;
+        height: calc(100svh - var(--header-h, 64px));
+        min-height: calc(100svh - var(--header-h, 64px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
       }
       .services-btn-container {
         justify-content: center !important;
@@ -196,8 +211,12 @@
         font-size: clamp(16px, 3.5svh, 18px) !important;
         padding: clamp(0.75rem, 2.5svh, 0.875rem) clamp(1.75rem, 5vw, 2.5rem) !important;
       }
+      .title-area {
+        flex-shrink: 0;
+      }
       .title-area .tag {
         font-size: clamp(14px, 3.5svh, 18px);
+        margin-bottom: clamp(0.5rem, 1.5svh, 0.75rem);
         text-shadow: 
           -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
           0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
@@ -208,8 +227,8 @@
       }
       .title-area .title {
         font-size: clamp(32px, 12vw, 64px);
-        margin-top: clamp(0.5rem, 2svh, 1rem);
-        margin-bottom: clamp(0.5rem, 2.5svh, 1rem);
+        margin-top: clamp(0.25rem, 1.5svh, 0.75rem);
+        margin-bottom: clamp(0.25rem, 1.5svh, 0.75rem);
         text-shadow: 
           -0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
           0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
@@ -221,7 +240,8 @@
       .disc {
         font-size: clamp(18px, 4svh, 22px);
         line-height: clamp(26px, 5.5svh, 32px);
-        margin: clamp(0.5rem, 2svh, 1rem) 0 clamp(0.5rem, 2.5svh, 1rem);
+        margin: clamp(0.25rem, 1.5svh, 0.75rem) 0;
+        flex-shrink: 0;
         text-shadow: 
           -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
           0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
@@ -229,6 +249,10 @@
           0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
           0 2px 4px rgba(0, 0, 0, 0.5),
           0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .services-btn-container {
+        flex-shrink: 0;
+        margin-top: 0;
       }
       .text-primary {
         text-shadow: 
@@ -240,7 +264,8 @@
           0 4px 8px rgba(0, 0, 0, 0.3) !important;
       }
       .slider-pagination-area {
-        bottom: clamp(0.5rem, 2svh, 1rem);
+        bottom: clamp(0.25rem, 1svh, 0.75rem);
+        position: absolute;
       }
       .custom-arrow { display: none; }
     }
