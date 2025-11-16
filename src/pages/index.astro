@@ -151,6 +151,15 @@ import ServicesSlider from '../components/ServicesSlider.astro';
     }
     /* Asegurar que la primera capa de cada componente rellene el alto y evite colapso de márgenes */
     .snap-section > section { height: 100%; min-height: 100%; display: flex; flex-direction: column; }
+
+    /* Fallback para pantallas con poca altura: permite scroll interno de la sección para no cortar contenido */
+    @media (max-height: 720px) {
+      .snap-section > section { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    }
+    @media (max-height: 580px) {
+      .snap-section { height: 100svh; }
+      .snap-section > section { overflow-y: auto; }
+    }
   </style>
 
   <!-- Back to Top Button -->
