@@ -22,7 +22,7 @@ const { title, excerpt, image, date, category, readTime, slug } = Astro.props;
         loading="lazy"
       />
       <div class="absolute top-4 left-4">
-        <span class="px-3 py-1 bg-primary-dark text-white text-sm font-bold rounded-full">
+        <span class="px-3 py-1 bg-primary text-gray-900 text-sm font-bold rounded-full">
           {category}
         </span>
       </div>
@@ -45,7 +45,7 @@ const { title, excerpt, image, date, category, readTime, slug } = Astro.props;
         </span>
       </div>
       
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-dark dark:group-hover:text-primary-light transition-colors duration-300">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors duration-300">
         {title}
       </h3>
       
@@ -53,7 +53,7 @@ const { title, excerpt, image, date, category, readTime, slug } = Astro.props;
         {excerpt}
       </p>
       
-      <div class="flex items-center text-primary-dark dark:text-primary-light font-semibold group-hover:gap-2 transition-all duration-300">
+      <div class="flex items-center text-primary font-semibold group-hover:gap-2 transition-all duration-300">
         <span>Leer más</span>
         <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

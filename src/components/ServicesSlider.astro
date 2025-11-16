@@ -1,0 +1,159 @@
+---
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<section id="servicios" class="relative w-full h-full min-h-full creative-fullpage--slider">
+  <div class="absolute inset-0 bg-gray-900"></div>
+
+  <div class="relative z-10 w-full h-full min-h-full banner-horizental">
+    <div class="swiper services-swiper swiper-container-h w-full h-full min-h-full">
+      <div class="swiper-wrapper">
+        {[
+          {
+            id: 'entrenamiento-personalizado',
+            tag: 'TU PLAN',
+            titulo: 'ENTRENAMIENTO',
+            descripcion: 'Sesiones one-on-one diseñadas para tus objetivos específicos.',
+            imagen: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=60&w=1600'
+          },
+          {
+            id: 'planes-nutricionales',
+            tag: 'NUTRICIÓN',
+            titulo: 'PERSONALIZADA',
+            descripcion: 'Alimentación a tu medida para maximizar resultados y sostener hábitos.',
+            imagen: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=60&w=1600'
+          },
+          {
+            id: 'asesoria-online',
+            tag: 'DESDE CASA',
+            titulo: 'ASESORÍA ONLINE',
+            descripcion: 'Entrena desde donde estés con seguimiento virtual paso a paso.',
+            imagen: 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&q=60&w=1600'
+          },
+          {
+            id: 'seminarios-talleres',
+            tag: 'APRENDE MÁS',
+            titulo: 'SEMINARIOS / TALLERES',
+            descripcion: 'Domina técnica, prevención de lesiones y mentalidad ganadora.',
+            imagen: 'https://images.unsplash.com/photo-1503424886307-b090341d25d1?auto=format&fit=crop&q=60&w=1600'
+          },
+          {
+            id: 'venta-articulos-deportivos',
+            tag: 'EQUÍPATE',
+            titulo: 'ARTÍCULOS DEPORTIVOS',
+            descripcion: 'Accesorios y equipo para potenciar tu rendimiento.',
+            imagen: 'https://images.unsplash.com/photo-1599050751795-5d0cf0e30f90?auto=format&fit=crop&q=60&w=1600'
+          }
+        ].map((s, index) => (
+          <div class="swiper-slide relative w-full h-full min-h-full">
+            <div class="slider-inner absolute inset-0" data-swiper-parallax="-120">
+              <img src={s.imagen} alt={s.titulo} class="slide-img absolute inset-0 w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+            </div>
+            <div class="swiper-content relative z-10 max-w-5xl px-6 sm:px-10 lg:px-16" data-swiper-parallax="-400">
+              <div class="mb-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur text-primary text-xs font-bold tracking-widest uppercase">SERVICIOS</div>
+              <div class="title-area">
+                <p class="tag">{s.tag}</p>
+                <a href={`/servicios/${s.id}`} class="title text-primary"> {s.titulo} </a>
+              </div>
+              <p class="disc">{s.descripcion}</p>
+              <div class="flex gap-4 items-center">
+                <a href={`/servicios/${s.id}`} class="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-gray-900 font-bold shadow hover:bg-primary-light transition-colors">Conoce más</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation -->
+      <div class="swiper-button-prev custom-arrow"></div>
+      <div class="swiper-button-next custom-arrow"></div>
+
+      <!-- Progressbar Pagination -->
+      <div class="slider-pagination-area">
+        <div class="swiper-pagination swiper-pagination-progressbar"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .services-swiper { height: 100%; min-height: 100%; position: relative; touch-action: none; background: #000; }
+    .services-swiper .swiper-wrapper { backface-visibility: hidden; transform: translateZ(0); }
+    .swiper-slide { margin: 0 !important; }
+    .slider-inner { height: 100%; pointer-events: none; }
+    .slider-inner .slide-img { pointer-events: none; object-position: center center; transform: scale(1.02); will-change: transform; }
+    .slider-inner::after { content: none; }
+    .swiper-slide { display: flex; align-items: center; justify-content: flex-start; text-align: left; overflow: hidden; }
+    .swiper-content { position: relative; top: 16%; left: 50px; max-width: 58ch; pointer-events: auto; }
+
+    .title-area .tag { color: #ffffff; font-weight: 900; font-size: 22px; margin: 0 0 10px 0; }
+    .title-area .title { margin-top: 30px; color: #fff; font-size: clamp(42px, 8vw, 112px); font-family: Inter, ui-sans-serif, system-ui; font-weight: 900; line-height: 1.05; text-transform: uppercase; margin-bottom: 32px; margin-left: -12px; text-decoration: none; display: inline-block; }
+    .disc { font-size: 20px; color: #FFFFFFB0; line-height: 32px; margin: 20px 0 28px; }
+
+    .custom-arrow { background: rgba(255,255,255,.08); backdrop-filter: blur(20px); width: 72px; height: 72px; border-radius: 9999px; position: absolute; top: 50%; transform: translateY(-50%); z-index: 40; }
+    .custom-arrow::after { color: rgba(255,255,255,.95); font-size: 28px; }
+    .swiper-button-next.custom-arrow { right: 32px; }
+    .swiper-button-prev.custom-arrow { left: 32px; }
+
+    .slider-pagination-area { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); width: 420px; display: flex; align-items: center; justify-content: center; z-index: 30; }
+    .swiper-pagination-progressbar { position: relative !important; height: 4px; width: 100% !important; background: rgba(255,255,255,.25); border-radius: 9999px; overflow: hidden; }
+    .swiper-pagination-progressbar .swiper-pagination-progressbar-fill { background: #fff; }
+
+    @media (max-width: 991px) {
+      .swiper-content { left: 0; top: 14%; text-align: center; max-width: 100%; }
+      .title-area .title { margin-left: 0; font-size: clamp(38px, 10vw, 84px); }
+      .slider-pagination-area { width: 240px; bottom: 24px; }
+      .custom-arrow { width: 52px; height: 52px; }
+    }
+    @media (max-width: 640px) {
+      .custom-arrow { display: none; }
+      .disc { font-size: 16px; line-height: 26px; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      const SWIPER_SRC = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+      function loadSwiper(){
+        return new Promise((resolve, reject) => {
+          if (window.Swiper) return resolve();
+          if (window.__loadingSwiper) return window.__loadingSwiper.then(resolve).catch(reject);
+          const s = document.createElement('script');
+          s.src = SWIPER_SRC; s.async = true;
+          s.onload = () => resolve();
+          s.onerror = (e) => reject(e);
+          document.head.appendChild(s);
+          window.__loadingSwiper = new Promise((res, rej)=>{ s.addEventListener('load', res); s.addEventListener('error', rej); });
+        });
+      }
+      function init(){
+        const container = document.querySelector('.services-swiper');
+        if (!container || container.dataset.initialized === 'true') return;
+        container.dataset.initialized = 'true';
+        const swiper = new window.Swiper(container, {
+          direction: 'horizontal',
+          slidesPerView: 1,
+          spaceBetween: 0,
+          roundLengths: true,
+          loop: true,
+          speed: 1200,
+          parallax: true,
+          autoplay: { delay: 9000, disableOnInteraction: false },
+          allowTouchMove: true,
+          grabCursor: true,
+          simulateTouch: true,
+          touchStartPreventDefault: false,
+          mousewheel: { forceToAxis: true, sensitivity: 1 },
+          keyboard: { enabled: true, onlyInViewport: true },
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+          pagination: { el: '.swiper-pagination', type: 'progressbar' },
+          observer: true,
+          observeParents: true
+        });
+        window.__servicesSwiper = swiper;
+      }
+      function start(){ loadSwiper().then(init).catch(()=>{}); }
+      if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', start); } else { start(); }
+    })();
+  </script>
+</section>

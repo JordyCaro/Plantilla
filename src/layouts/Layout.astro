@@ -1,6 +1,6 @@
 ---
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+// import Footer from '../components/Footer.astro';
 import Analytics from '../components/analytics/Analytics.astro';
 import { ViewTransitions } from 'astro:transitions';
 
@@ -16,13 +16,14 @@ interface Props {
 const { 
   title,
   description = "Soy tu mayor fan. Entrenador personal especializado en transformaciones reales. Entreno cuerpos, motivo mentes y construyo hábitos que duran toda la vida.",
-  keywords = "entrenador personal, fitness, entrenamiento personalizado, nutrición, transformación física, motivación, seminarios fitness, planes nutricionales, asesoría online, venta de artículos deportivos, tienda fitness, equipamiento deportivo",
-  image = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200",
+  keywords = "entrenador personal, entrenador personal Medellín, entrenamiento personalizado, nutrición, transformación física, bajar de peso, ganar músculo, motivación, planes nutricionales, asesoría online",
+  image = "/jairo.jpg",
   url = Astro.url.href,
   type = "website"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -34,7 +35,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jairo Traine" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#7BA82F" />
+    <meta name="theme-color" content="#4FFF85" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
@@ -52,7 +53,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Jairo Traine - Entrenador Personal" />
     <meta property="og:locale" content="es_ES" />
     
@@ -61,7 +62,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={ogImage} />
     
     <!-- Additional SEO -->
     <meta name="generator" content={Astro.generator} />
@@ -77,7 +78,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "name": "Jairo Traine",
       "description": "Entrenador personal especializado en transformaciones físicas y mentales. Soy tu mayor fan.",
       "url": "https://jairotraine.com",
-      "image": "https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&q=80&w=800",
+      "image": "{ogImage}",
       "jobTitle": "Entrenador Personal Certificado",
       "knowsAbout": [
         "Entrenamiento Personal",
@@ -192,11 +193,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <style>
       html {
         scroll-behavior: smooth;
+        background-color: #0b0b0b; /* igual al snap container para evitar líneas */
+        height: 100%;
       }
 
       body {
         overflow-x: hidden;
         width: 100%;
+        margin: 0;
+        background-color: #0b0b0b; /* unifica el fondo global */
+        min-height: 100%;
       }
 
       * {
@@ -208,12 +214,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         display: none; /* Chrome, Safari, Opera */
       }
 
+      /* Ocultar barra de herramientas de Astro en dev para evitar franja inferior */
+      astro-dev-toolbar, .astro-dev-toolbar, [data-astro-dev-toolbar] {
+        display: none !important;
+      }
+
+      /* Cuando existe contenedor con snap scroll, ocultar Footer global para que no genere franja */
+      .snap-container ~ footer { display: none !important; }
+
       /* Skip to content link - Accessibility */
       .skip-link {
         position: absolute;
         top: -100px;
         left: 0;
-        background: var(--tw-color-primary-dark, #7BA82F);
+        background: var(--tw-color-primary-dark, #2BEB6C);
         color: white;
         padding: 1rem 2rem;
         text-decoration: none;
@@ -225,7 +239,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       .skip-link:focus {
         top: 0;
-        outline: 3px solid var(--tw-color-primary-light, #B8E986);
+        outline: 3px solid var(--tw-color-primary-light, #7CFF9F);
         outline-offset: 2px;
       }
 
@@ -251,7 +265,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <main id="main-content" role="main">
       <slot />
     </main>
-    <Footer />
+    <!-- Footer eliminado -->
   </body>
 </html>
 

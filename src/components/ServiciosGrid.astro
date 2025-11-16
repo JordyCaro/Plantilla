@@ -48,7 +48,7 @@ const servicios = [
     <!-- Section Header -->
     <div class="text-center mb-12 sm:mb-16 lg:mb-20">
       <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6">
-        MIS <span class="text-primary-dark dark:text-primary-light">SERVICIOS</span>
+        MIS <span class="text-primary">SERVICIOS</span>
       </h2>
       <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
         He diseñado cada servicio pensando en llevarte al siguiente nivel, con un enfoque personalizado y resultados garantizados
@@ -61,7 +61,7 @@ const servicios = [
         return (
           <a 
             href={`/servicios/${servicio.id}`}
-            class="service-card group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary-dark dark:hover:border-primary-light shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary-dark/20 transform hover:-translate-y-2"
+            class="service-card group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 transform hover:-translate-y-2"
           >
             <div class="relative z-10 flex flex-col h-full">
               <!-- Image -->
@@ -81,7 +81,7 @@ const servicios = [
               <!-- Content -->
               <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
                 <div class="flex flex-col gap-3">
-                  <h3 class="text-2xl font-black text-gray-900 dark:text-white group-hover:text-primary-dark dark:group-hover:text-primary-light transition-colors">
+                  <h3 class="text-2xl font-black text-gray-900 dark:text-white group-hover:text-primary transition-colors">
                     {servicio.titulo}
                   </h3>
                   <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -89,7 +89,7 @@ const servicios = [
                   </p>
                 </div>
 
-                <div class="flex items-center text-primary-dark dark:text-primary-light font-bold group-hover:translate-x-2 transition-transform text-base mt-auto">
+                <div class="flex items-center text-primary font-bold group-hover:translate-x-2 transition-transform text-base mt-auto">
                   <span>VER DETALLES</span>
                   <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -109,7 +109,7 @@ const servicios = [
       </p>
       <a 
         href="/contacto" 
-        class="inline-flex items-center px-8 py-4 text-white bg-primary-dark hover:bg-primary font-bold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        class="inline-flex items-center px-8 py-4 text-gray-900 bg-primary hover:bg-primary-light font-bold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
       >
         <span class="font-bold">AGENDA UNA CONSULTA GRATUITA</span>
         <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">

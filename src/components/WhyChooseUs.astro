@@ -1,72 +1,97 @@
 ---
 const features = [
   {
-    icon: '💪',
-    title: 'MUSCLES BUILDING',
-    description: 'Entrenamiento diseñado para desarrollar masa muscular y fuerza de forma efectiva y segura.',
-    gradient: 'from-primary-dark to-primary'
+    title: 'Construcción Muscular',
+    description: 'Programas de fuerza y ganancia muscular con técnica perfecta y progresión inteligente.',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1600'
   },
   {
-    icon: '🎯',
-    title: 'NUTRICIÓN PERSONALIZADA',
-    description: 'Planes alimenticios adaptados a tus objetivos específicos para maximizar tus resultados.',
-    gradient: 'from-primary to-primary-light'
+    title: 'Nutrición Personalizada',
+    description: 'Plan de alimentación a tu medida para maximizar resultados y sostener hábitos reales.',
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1600'
   },
   {
-    icon: '🔥',
-    title: 'MOTIVACIÓN CONTINUA',
-    description: 'Apoyo constante y seguimiento personalizado para mantener tu compromiso y alcanzar tus metas.',
-    gradient: 'from-primary-dark to-primary-light'
+    title: 'Motivación Continua',
+    description: 'Acompañamiento, seguimiento y mindset ganador para que nunca te detengas.',
+    image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=1600'
   }
 ];
 ---
 
-<section id="why-choose-us" class="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-  <div class="w-full max-w-[1400px] mx-auto">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-4">
-        ¿POR QUÉ <span class="text-primary-dark dark:text-primary-light">ELEGIRME?</span>
-      </h2>
-      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-        Un enfoque profesional y personalizado para alcanzar tus objetivos de fitness
-      </p>
+<section id="why-choose-us" class="relative h-full min-h-full">
+  <!-- Split background: left dark, right image handled per slide -->
+  <div class="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
+    <div class="bg-gray-900"></div>
+    <div class="bg-black"></div>
+  </div>
+
+  <div class="relative z-10 h-full min-h-full grid grid-cols-1 md:grid-cols-2">
+    <!-- Left Pane - Title/Intro -->
+    <div class="flex items-center justify-center px-6 sm:px-8 lg:px-12 py-10">
+      <div class="max-w-xl text-center">
+        <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight">
+          ¿POR QUÉ <span class="text-primary">ELEGIRME?</span>
+        </h2>
+        <p class="mt-6 text-lg sm:text-xl text-gray-300">
+          Un enfoque profesional y personalizado para alcanzar tus objetivos de fitness, con ciencia, constancia y motivación real.
+        </p>
+      </div>
     </div>
 
-    <!-- Features Grid -->
-    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-      {features.map((feature, index) => (
-        <div 
-          class="feature-card group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary-dark dark:hover:border-primary-light transition-all duration-300 p-8 hover:shadow-2xl hover:shadow-primary-dark/20 transform hover:-translate-y-2"
-        >
-          <!-- Icon Circle -->
-          <div class={`w-20 h-20 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-lg mx-auto`}>
-            <span class="text-4xl">{feature.icon}</span>
-          </div>
+    <!-- Right Pane - Scroll Snap list with background images -->
+    <div class="relative h-full min-h-full flex items-center justify-center">
+      <!-- Arrows mobile (left/right) -->
+      <div class="pointer-events-none absolute inset-y-0 left-2 right-2 flex justify-between items-center md:hidden">
+        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">‹</div>
+        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">›</div>
+      </div>
+      <!-- Arrows desktop (up/down) -->
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-2 md:flex hidden flex-col gap-2 items-center">
+        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">▲</div>
+        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">▼</div>
+      </div>
 
-          <!-- Content -->
-          <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 text-center group-hover:text-primary-dark dark:group-hover:text-primary-light transition-colors">
-            {feature.title}
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-center mb-6">
-            {feature.description}
-          </p>
-
-          <!-- Button -->
-          <div class="text-center">
-            <a 
-              href="#servicios"
-              class="inline-flex items-center text-primary-dark dark:text-primary-light font-bold hover:gap-3 transition-all duration-300"
-            >
-              <span>CONOCE MÁS</span>
-              <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      ))}
+      <ol class="h-full min-h-full list-none m-0 p-0 w-full scrollbar-hide flex md:block overflow-x-auto md:overflow-y-auto snap-x md:snap-y snap-mandatory">
+        {features.map((feature) => (
+          <li 
+            class="h-full min-h-[100%] md:min-h-[100%] snap-start flex items-center justify-center relative flex-shrink-0 w-full"
+            style={`background-image: url('${feature.image}'); background-size: cover; background-position: center; background-repeat: no-repeat;`}
+          >
+            <div class="absolute inset-0 bg-black/35"></div>
+            <div class="relative w-full max-w-3xl mx-auto px-6 sm:px-10 lg:px-16">
+              <div class="rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl border border-white/20 overflow-hidden">
+                <div class="p-10 sm:p-12 lg:p-14 text-center">
+                  <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
+                    {feature.title}
+                  </h3>
+                  <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                    {feature.description}
+                  </p>
+                  <div class="mt-10 flex items-center justify-center">
+                    <a href="#servicios" class="inline-flex items-center px-8 py-4 rounded-lg bg-primary text-gray-900 text-lg sm:text-xl font-bold shadow-md hover:bg-primary-light transition-colors">
+                      CONOCE MÁS
+                      <svg class="w-6 h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   </div>
+
+  <style>
+    #why-choose-us { display: grid; }
+    .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    /* Horizontal snap on mobile: each slide full width */
+    @media (max-width: 767px) {
+      #why-choose-us ol > li { width: 100%; min-width: 100%; }
+    }
+  </style>
 </section>
 
