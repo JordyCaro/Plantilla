@@ -127,7 +127,7 @@ import ServicesSlider from '../components/ServicesSlider.astro';
   <style>
     /* Snap container */
     .snap-container {
-      height: min(100dvh, calc(var(--vh, 1vh) * 100)); /* prefer 100dvh, fallback a --vh */
+      height: min(100svh, 100dvh, calc(var(--vh, 1vh) * 100)); /* robust across browsers */
       overflow-y: auto;
       scroll-snap-type: y mandatory;
       overscroll-behavior-y: contain;
@@ -140,7 +140,7 @@ import ServicesSlider from '../components/ServicesSlider.astro';
 
     .snap-section {
       position: relative;
-      height: calc(min(100dvh, var(--vh, 1vh) * 100) + 1px); /* solapar 1px para evitar líneas por subpíxel */
+      height: calc(min(100svh, 100dvh, var(--vh, 1vh) * 100) + 1px); /* solapar 1px para evitar líneas por subpíxel */
       margin-bottom: -1px; /* corrige el solape */
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -149,16 +149,48 @@ import ServicesSlider from '../components/ServicesSlider.astro';
       outline: 1px solid transparent; /* evita artefactos de subpíxel */
       contain: layout paint; /* aísla el pintado */
     }
-    /* Asegurar que la primera capa de cada componente rellene el alto y evite colapso de márgenes */
-    .snap-section > section { height: 100%; min-height: 100%; display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    :root { --header-h: 64px; }
+    /* La primera capa de cada sección rellena el alto y respeta el header fijo */
+    .snap-section > section {
+      box-sizing: border-box;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      /* Espaciado estable con rem; respeta header fijo y notch */
+      padding-top: calc(var(--header-h) + 2.5rem);
+      padding-bottom: 3rem;
+      overflow-y: auto; 
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Hero section - SIN scroll interno, todo debe caber */
+    .snap-section:first-child > section {
+      overflow: hidden;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    @media (max-width: 768px) {
+      .snap-section > section {
+        padding-top: calc(var(--header-h) + 1.75rem);
+        padding-bottom: 2rem;
+      }
+      .snap-section:first-child > section {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
 
     /* Fallback para pantallas con poca altura: permite scroll interno de la sección para no cortar contenido */
     @media (max-height: 720px) {
       .snap-section > section { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      /* Hero siempre sin scroll interno */
+      .snap-section:first-child > section { overflow: hidden; }
     }
     @media (max-height: 580px) {
       .snap-section { height: 100svh; }
       .snap-section > section { overflow-y: auto; }
+      /* Hero siempre sin scroll interno */
+      .snap-section:first-child > section { overflow: hidden; }
     }
   </style>
 
@@ -166,10 +198,15 @@ import ServicesSlider from '../components/ServicesSlider.astro';
   <BackToTop />
   
   <script is:inline>
-    // Precise mobile vh unit to avoid cropping due to browser UI
+    // Precise mobile vh unit to avoid cropping due to browser UI + header safe area
     function setVH() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
+      const header = document.querySelector('header');
+      if (header) {
+        const h = Math.ceil(header.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', `${h}px`);
+      }
     }
     setVH();
     window.addEventListener('resize', setVH);

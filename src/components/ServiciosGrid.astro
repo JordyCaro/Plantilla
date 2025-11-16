@@ -43,8 +43,8 @@ const servicios = [
 ];
 ---
 
-<section id="servicios" class="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-  <div class="w-full max-w-[1400px] mx-auto">
+<section id="servicios" class="section bg-white dark:bg-gray-900">
+  <div class="container">
     <!-- Section Header -->
     <div class="text-center mb-12 sm:mb-16 lg:mb-20">
       <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6">
@@ -56,46 +56,48 @@ const servicios = [
     </div>
 
     <!-- Services Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 service-grid">
+    <div class="servicesGrid service-grid">
       {servicios.map((servicio, index) => {
         return (
           <a 
             href={`/servicios/${servicio.id}`}
-            class="service-card group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 transform hover:-translate-y-2"
+            class="serviceCard group"
+            data-tilt="true"
           >
-            <div class="relative z-10 flex flex-col h-full">
+            <div class="serviceCard__body">
               <!-- Image -->
-              <div class="relative h-56 sm:h-64 overflow-hidden">
+              <div class="serviceCard__imgWrap">
                 <img 
                   src={servicio.imagen} 
                   alt={servicio.titulo}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  class=""
                   loading="lazy"
                   fetchpriority="low"
                   width="500"
                   height="320"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
+                <div class="serviceCard__overlay"></div>
               </div>
 
               <!-- Content -->
-              <div class="p-6 sm:p-8 flex flex-col gap-4 flex-1">
-                <div class="flex flex-col gap-3">
-                  <h3 class="text-2xl font-black text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+              <div class="serviceCard__content">
+                <div>
+                  <h3 class="serviceCard__title">
                     {servicio.titulo}
                   </h3>
-                  <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <p class="serviceCard__desc">
                     {servicio.descripcion}
                   </p>
                 </div>
 
-                <div class="flex items-center text-primary font-bold group-hover:translate-x-2 transition-transform text-base mt-auto">
+                <div class="serviceCard__cta">
                   <span>VER DETALLES</span>
-                  <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
               </div>
+              <span class="serviceCard__glow"></span>
             </div>
           </a>
         );
@@ -120,15 +122,32 @@ const servicios = [
   </div>
 </section>
 
-<style>
-  .service-grid {
-    perspective: 1400px;
-    perspective-origin: 50% 50%;
+<script>
+  // Protección por prefers-reduced-motion y puntero fino
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (!prefersReduced && finePointer) {
+    document.querySelectorAll('.serviceCard[data-tilt="true"]').forEach((card) => {
+      const glow = card.querySelector('.serviceCard__glow');
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        const cx = r.width / 2;
+        const cy = r.height / 2;
+        const rx = ((y - cy) / cy) * -12;
+        const ry = ((x - cx) / cx) * 12;
+        const angle = 135 + rx - ry;
+        card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        card.style.setProperty('--gx', `${x}px`);
+        card.style.setProperty('--gy', `${y}px`);
+        card.style.setProperty('--angle', `${angle}deg`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        card.style.setProperty('--angle', '135deg');
+      });
+    });
   }
-
-  .service-card {
-    position: relative;
-  }
-
-</style>
+</script>
 
