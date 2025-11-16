@@ -107,7 +107,7 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1.25rem 1rem 1.25rem;
+    padding: 0 1.25rem 0.5rem 1.25rem;
     padding-top: var(--header-h, 64px);
     box-sizing: border-box;
     display: flex;
@@ -129,7 +129,7 @@
     height: calc(100svh - var(--header-h, 64px));
     min-height: calc(100svh - var(--header-h, 64px));
     padding-top: clamp(0.5rem, 1.5svh, 1rem);
-    padding-bottom: clamp(0.5rem, 1.5svh, 1rem);
+    padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
   }
 
   /* Logo Container - DOMINANTE, MÁS ARRIBA */
@@ -180,7 +180,7 @@
     color: white;
   }
   .hero-title-accent {
-    color: #B8E986;
+    color: #4FFF85;
   }
 
   /* Description - Espaciado equilibrado */
@@ -232,13 +232,13 @@
   }
 
   .hero-btn-primary {
-    background-color: #B8E986;
+    background-color: #4FFF85;
     color: #1a1a1a;
-    box-shadow: 0 4px 12px rgba(184, 233, 134, 0.3);
+    box-shadow: 0 4px 12px rgba(79, 255, 133, 0.3);
   }
   .hero-btn-primary:hover {
-    background-color: #a8d976;
-    box-shadow: 0 6px 16px rgba(184, 233, 134, 0.4);
+    background-color: #7CFF9F;
+    box-shadow: 0 6px 16px rgba(79, 255, 133, 0.4);
   }
 
   .hero-btn-secondary {
@@ -259,10 +259,15 @@
 
   /* Responsive - Mobile (celulares pequeños) */
   @media (max-width: 639px) {
+    .hero-content {
+      padding-bottom: 0.25rem;
+    }
     .hero-inner {
       gap: clamp(0.75rem, 2svh, 1.5rem);
       padding-top: clamp(0.25rem, 1svh, 0.75rem);
-      padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
+      padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+      height: calc(100svh - var(--header-h, 64px));
+      min-height: calc(100svh - var(--header-h, 64px));
     }
     .hero-logo {
       height: clamp(16rem, 45svh, 28rem);
@@ -277,12 +282,13 @@
     }
     .hero-description {
       font-size: clamp(0.8125rem, 1.8svh, 1rem);
-      margin-bottom: clamp(0.75rem, 2svh, 1.25rem);
+      margin-bottom: clamp(0.5rem, 1.5svh, 1rem);
       padding: 0 0.5rem;
     }
     .hero-buttons {
-      gap: clamp(0.625rem, 1.8svh, 0.875rem);
+      gap: clamp(0.5rem, 1.5svh, 0.75rem);
       padding: 0 0.5rem;
+      margin-bottom: 0;
     }
     .hero-btn {
       padding: 0.75rem 1.5rem;

@@ -57,8 +57,8 @@
                 <a href={`/servicios/${s.id}`} class="title text-primary"> {s.titulo} </a>
               </div>
               <p class="disc">{s.descripcion}</p>
-              <div class="flex gap-4 items-center">
-                <a href={`/servicios/${s.id}`} class="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-gray-900 font-bold shadow hover:bg-primary-light transition-colors">Conoce más</a>
+              <div class="flex gap-4 items-center justify-center services-btn-container">
+                <a href={`/servicios/${s.id}`} class="services-btn-primary inline-flex items-center px-6 py-3 rounded-lg text-gray-900 font-bold shadow transition-colors">Conoce más</a>
               </div>
             </div>
           </div>
@@ -87,9 +87,73 @@
     .swiper-slide { display: flex; align-items: center; justify-content: flex-start; text-align: left; overflow: hidden; }
     .swiper-content { position: relative; top: 0; margin-top: clamp(1rem, 8svh, 6rem); left: 50px; max-width: 58ch; pointer-events: auto; }
 
-    .title-area .tag { color: #ffffff; font-weight: 900; font-size: 22px; margin: 0 0 10px 0; }
-    .title-area .title { margin-top: 30px; color: #fff; font-size: clamp(42px, 8vw, 112px); font-family: Inter, ui-sans-serif, system-ui; font-weight: 900; line-height: 1.05; text-transform: uppercase; margin-bottom: 32px; margin-left: -12px; text-decoration: none; display: inline-block; }
-    .disc { font-size: 20px; color: #FFFFFFB0; line-height: 32px; margin: 20px 0 28px; }
+    .title-area .tag { 
+      color: #ffffff; 
+      font-weight: 900; 
+      font-size: 22px; 
+      margin: 0 0 10px 0;
+      text-shadow: 
+        -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+        0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+        -0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+        0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .title-area .title { 
+      margin-top: 30px; 
+      color: #fff; 
+      font-size: clamp(42px, 8vw, 112px); 
+      font-family: Inter, ui-sans-serif, system-ui; 
+      font-weight: 900; 
+      line-height: 1.05; 
+      text-transform: uppercase; 
+      margin-bottom: 32px; 
+      margin-left: -12px; 
+      text-decoration: none; 
+      display: inline-block;
+      text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.7),
+        1px -1px 0 rgba(0, 0, 0, 0.7),
+        -1px 1px 0 rgba(0, 0, 0, 0.7),
+        1px 1px 0 rgba(0, 0, 0, 0.7),
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .disc { 
+      font-size: 20px; 
+      color: #FFFFFFB0; 
+      line-height: 32px; 
+      margin: 20px 0 28px;
+      text-shadow: 
+        -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+        0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+        -0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+        0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Botón con color verde correcto */
+    .services-btn-primary {
+      background-color: #4FFF85 !important;
+      color: #1a1a1a !important;
+    }
+    .services-btn-primary:hover {
+      background-color: #7CFF9F !important;
+    }
+    
+    /* Textos con color verde correcto y borde negro delgado con sombra */
+    .text-primary {
+      color: #4FFF85 !important;
+      text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.7),
+        1px -1px 0 rgba(0, 0, 0, 0.7),
+        -1px 1px 0 rgba(0, 0, 0, 0.7),
+        1px 1px 0 rgba(0, 0, 0, 0.7),
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        0 6px 12px rgba(0, 0, 0, 0.3) !important;
+    }
 
     .custom-arrow { background: rgba(255,255,255,.08); backdrop-filter: blur(20px); width: 72px; height: 72px; border-radius: 9999px; position: absolute; top: 50%; transform: translateY(-50%); z-index: 40; }
     .custom-arrow::after { color: rgba(255,255,255,.95); font-size: 28px; }
@@ -107,8 +171,78 @@
       .custom-arrow { width: 52px; height: 52px; }
     }
     @media (max-width: 640px) {
+      .creative-fullpage--slider {
+        height: 100svh;
+        min-height: 100svh;
+      }
+      .banner-horizental {
+        height: 100%;
+        min-height: 100%;
+      }
+      .services-swiper {
+        height: 100%;
+        min-height: 100%;
+      }
+      .swiper-content {
+        margin-top: clamp(0.25rem, 3svh, 1.5rem);
+        padding: 0 1rem;
+        padding-bottom: clamp(0.25rem, 2svh, 1rem);
+      }
+      .services-btn-container {
+        justify-content: center !important;
+        width: 100%;
+      }
+      .services-btn-primary {
+        font-size: clamp(16px, 3.5svh, 18px) !important;
+        padding: clamp(0.75rem, 2.5svh, 0.875rem) clamp(1.75rem, 5vw, 2.5rem) !important;
+      }
+      .title-area .tag {
+        font-size: clamp(14px, 3.5svh, 18px);
+        text-shadow: 
+          -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+          0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+          -0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+          0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+          0 2px 4px rgba(0, 0, 0, 0.5),
+          0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .title-area .title {
+        font-size: clamp(32px, 12vw, 64px);
+        margin-top: clamp(0.5rem, 2svh, 1rem);
+        margin-bottom: clamp(0.5rem, 2.5svh, 1rem);
+        text-shadow: 
+          -0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
+          0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
+          -0.75px 0.75px 0 rgba(0, 0, 0, 0.7),
+          0.75px 0.75px 0 rgba(0, 0, 0, 0.7),
+          0 2px 4px rgba(0, 0, 0, 0.4),
+          0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .disc {
+        font-size: clamp(18px, 4svh, 22px);
+        line-height: clamp(26px, 5.5svh, 32px);
+        margin: clamp(0.5rem, 2svh, 1rem) 0 clamp(0.5rem, 2.5svh, 1rem);
+        text-shadow: 
+          -0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+          0.5px -0.5px 0 rgba(0, 0, 0, 0.8),
+          -0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+          0.5px 0.5px 0 rgba(0, 0, 0, 0.8),
+          0 2px 4px rgba(0, 0, 0, 0.5),
+          0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .text-primary {
+        text-shadow: 
+          -0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
+          0.75px -0.75px 0 rgba(0, 0, 0, 0.7),
+          -0.75px 0.75px 0 rgba(0, 0, 0, 0.7),
+          0.75px 0.75px 0 rgba(0, 0, 0, 0.7),
+          0 2px 4px rgba(0, 0, 0, 0.4),
+          0 4px 8px rgba(0, 0, 0, 0.3) !important;
+      }
+      .slider-pagination-area {
+        bottom: clamp(0.5rem, 2svh, 1rem);
+      }
       .custom-arrow { display: none; }
-      .disc { font-size: 16px; line-height: 26px; }
     }
   </style>
 
