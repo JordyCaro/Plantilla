@@ -18,63 +18,50 @@ const features = [
 ];
 ---
 
-<section id="why-choose-us" class="relative h-full min-h-full">
+<section id="why-choose-us" class="why-choose-section">
   <!-- Split background: left dark, right image handled per slide -->
-  <div class="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
-    <div class="bg-gray-900"></div>
-    <div class="bg-black"></div>
+  <div class="why-choose-bg">
+    <div class="why-choose-bg-left"></div>
+    <div class="why-choose-bg-right"></div>
   </div>
 
-  <div class="relative z-10 h-full min-h-full grid grid-cols-1 md:grid-cols-2">
+  <div class="why-choose-container">
     <!-- Left Pane - Title/Intro -->
-    <div class="flex items-center justify-center px-6 sm:px-8 lg:px-12 py-10">
-      <div class="max-w-xl text-center">
-        <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight">
-          ¿POR QUÉ <span class="text-primary">ELEGIRME?</span>
+    <div class="why-choose-left">
+      <div class="why-choose-left-inner">
+        <h2 class="why-choose-title">
+          ¿POR QUÉ <span class="why-choose-title-accent">ELEGIRME?</span>
         </h2>
-        <p class="mt-6 text-lg sm:text-xl text-gray-300">
+        <p class="why-choose-description">
           Un enfoque profesional y personalizado para alcanzar tus objetivos de fitness, con ciencia, constancia y motivación real.
         </p>
       </div>
     </div>
 
     <!-- Right Pane - Scroll Snap list with background images -->
-    <div class="relative h-full min-h-full flex items-center justify-center">
-      <!-- Arrows mobile (left/right) -->
-      <div class="pointer-events-none absolute inset-y-0 left-2 right-2 flex justify-between items-center md:hidden">
-        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">‹</div>
-        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">›</div>
-      </div>
-      <!-- Arrows desktop (up/down) -->
-      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-2 md:flex hidden flex-col gap-2 items-center">
-        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">▲</div>
-        <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70">▼</div>
-      </div>
-
-      <ol class="h-full min-h-full list-none m-0 p-0 w-full scrollbar-hide flex md:block overflow-x-auto md:overflow-y-auto snap-x md:snap-y snap-mandatory">
+    <div class="why-choose-right">
+      <ol class="why-choose-list">
         {features.map((feature) => (
           <li 
-            class="h-full min-h-[100%] md:min-h-[100%] snap-start flex items-center justify-center relative flex-shrink-0 w-full"
-            style={`background-image: url('${feature.image}'); background-size: cover; background-position: center; background-repeat: no-repeat;`}
+            class="why-choose-item"
+            style={`background-image: url('${feature.image}');`}
           >
-            <div class="absolute inset-0 bg-black/35"></div>
-            <div class="relative w-full max-w-3xl mx-auto px-6 sm:px-10 lg:px-16">
-              <div class="rounded-2xl bg-white/95 backdrop-blur-sm shadow-2xl border border-white/20 overflow-hidden">
-                <div class="p-10 sm:p-12 lg:p-14 text-center">
-                  <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4">
-                    {feature.title}
-                  </h3>
-                  <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                    {feature.description}
-                  </p>
-                  <div class="mt-10 flex items-center justify-center">
-                    <a href="#servicios" class="inline-flex items-center px-8 py-4 rounded-lg bg-primary text-gray-900 text-lg sm:text-xl font-bold shadow-md hover:bg-primary-light transition-colors">
-                      CONOCE MÁS
-                      <svg class="w-6 h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </a>
-                  </div>
+            <div class="why-choose-item-overlay"></div>
+            <div class="why-choose-item-content">
+              <div class="why-choose-card">
+                <h3 class="why-choose-card-title">
+                  {feature.title}
+                </h3>
+                <p class="why-choose-card-description">
+                  {feature.description}
+                </p>
+                <div class="why-choose-card-button-container">
+                  <a href="#servicios" class="why-choose-card-button">
+                    CONOCE MÁS
+                    <svg class="why-choose-card-button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
@@ -85,12 +72,352 @@ const features = [
   </div>
 
   <style>
-    #why-choose-us { display: grid; }
-    .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    /* Horizontal snap on mobile: each slide full width */
+    /* Why Choose Section - Sin scroll interno, todo debe caber */
+    .why-choose-section {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Background */
+    .why-choose-bg {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      z-index: 0;
+    }
+
+    @media (min-width: 768px) {
+      .why-choose-bg {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .why-choose-bg-left {
+      background-color: #111827;
+    }
+
+    .why-choose-bg-right {
+      background-color: #000000;
+    }
+
+    /* Container */
+    .why-choose-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100svh;
+      min-height: 100svh;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+      .why-choose-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Left Pane */
+    .why-choose-left {
+      background-color: #111827;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 3svh, 2rem) clamp(1rem, 4vw, 3rem);
+      padding-top: var(--header-h, 64px);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .why-choose-left-inner {
+      width: 100%;
+      max-width: 36rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1rem, 2.5svh, 1.5rem);
+      height: calc(100svh - var(--header-h, 64px));
+      min-height: calc(100svh - var(--header-h, 64px));
+      box-sizing: border-box;
+    }
+
+    .why-choose-title {
+      font-size: clamp(2rem, 8vw, 4.5rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .why-choose-title-accent {
+      color: #4FFF85;
+    }
+
+    .why-choose-description {
+      font-size: clamp(1rem, 2.5svh, 1.25rem);
+      color: #d1d5db;
+      line-height: 1.6;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    /* Right Pane */
+    .why-choose-right {
+      position: relative;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .why-choose-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .why-choose-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .why-choose-list {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+      }
+    }
+
+    .why-choose-item {
+      position: relative;
+      height: 100%;
+      min-height: 100%;
+      width: 100%;
+      min-width: 100%;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .why-choose-item-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    .why-choose-item-content {
+      position: relative;
+      width: 100%;
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: clamp(1rem, 4vw, 4rem);
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .why-choose-card {
+      border-radius: 1rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      padding: clamp(2rem, 5svh, 3.5rem);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .why-choose-card-title {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      font-weight: 900;
+      color: #111827;
+      margin: 0 0 clamp(1rem, 2.5svh, 1.5rem) 0;
+      flex-shrink: 0;
+    }
+
+    .why-choose-card-description {
+      font-size: clamp(1rem, 2.5svh, 1.25rem);
+      color: #374151;
+      line-height: 1.7;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .why-choose-card-button-container {
+      margin-top: clamp(1.5rem, 4svh, 2.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .why-choose-card-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.875rem, 2.5svh, 1rem) clamp(2rem, 5vw, 2.5rem);
+      font-size: clamp(1rem, 2.5svh, 1.25rem);
+      font-weight: 700;
+      border-radius: 0.5rem;
+      background-color: #4FFF85;
+      color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(79, 255, 133, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .why-choose-card-button:hover {
+      background-color: #7CFF9F;
+      box-shadow: 0 6px 16px rgba(79, 255, 133, 0.4);
+    }
+
+    .why-choose-card-button-icon {
+      width: clamp(1.25rem, 3svh, 1.5rem);
+      height: clamp(1.25rem, 3svh, 1.5rem);
+      margin-left: 0.5rem;
+    }
+
+    /* Responsive - Mobile */
     @media (max-width: 767px) {
-      #why-choose-us ol > li { width: 100%; min-width: 100%; }
+      .why-choose-container {
+        grid-template-rows: auto 1fr;
+        height: 100svh;
+        min-height: 100svh;
+      }
+      .why-choose-left {
+        padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(0.5rem, 1.5svh, 0.75rem);
+        padding-top: var(--header-h, 64px);
+        align-items: flex-start;
+        height: auto;
+        min-height: auto;
+      }
+      .why-choose-left-inner {
+        gap: clamp(0.5rem, 1.5svh, 0.75rem);
+        height: auto;
+        min-height: auto;
+        padding-top: clamp(0.25rem, 1svh, 0.5rem);
+        padding-bottom: clamp(0.25rem, 1svh, 0.5rem);
+      }
+      .why-choose-title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        line-height: 1.1;
+      }
+      .why-choose-description {
+        font-size: clamp(0.875rem, 2svh, 1rem);
+        line-height: 1.4;
+      }
+      .why-choose-right {
+        height: 100%;
+        min-height: 0;
+        flex: 1;
+      }
+      .why-choose-item-content {
+        padding: clamp(0.75rem, 2vw, 1.5rem);
+      }
+      .why-choose-card {
+        padding: clamp(1.25rem, 3.5svh, 2rem);
+      }
+      .why-choose-card-title {
+        font-size: clamp(1.125rem, 3.5vw, 1.75rem);
+        margin-bottom: clamp(0.5rem, 1.5svh, 0.75rem);
+        line-height: 1.2;
+      }
+      .why-choose-card-description {
+        font-size: clamp(0.875rem, 2svh, 1rem);
+        line-height: 1.5;
+      }
+      .why-choose-card-button-container {
+        margin-top: clamp(0.75rem, 2.5svh, 1.25rem);
+      }
+      .why-choose-card-button {
+        padding: clamp(0.75rem, 2svh, 0.875rem) clamp(1.5rem, 4vw, 2rem);
+        font-size: clamp(0.9375rem, 2.2svh, 1.125rem);
+      }
+    }
+
+    /* Responsive - Tablet */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .why-choose-left-inner {
+        gap: clamp(1.25rem, 3svh, 1.75rem);
+      }
+      .why-choose-title {
+        font-size: clamp(2.5rem, 9vw, 4rem);
+      }
+      .why-choose-description {
+        font-size: clamp(1.125rem, 2.8svh, 1.375rem);
+      }
+    }
+
+    /* Responsive - Desktop */
+    @media (min-width: 1024px) {
+      .why-choose-left-inner {
+        gap: clamp(1.5rem, 3.5svh, 2rem);
+      }
+      .why-choose-title {
+        font-size: clamp(3rem, 10vw, 4.5rem);
+      }
+      .why-choose-description {
+        font-size: clamp(1.25rem, 3svh, 1.5rem);
+      }
+    }
+
+    /* Fallback para pantallas con poca altura */
+    @media (max-height: 600px) {
+      .why-choose-left-inner {
+        gap: clamp(0.75rem, 1.5svh, 1rem);
+      }
+      .why-choose-title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+      }
+      .why-choose-description {
+        font-size: clamp(0.875rem, 2svh, 1rem);
+      }
+      .why-choose-card {
+        padding: clamp(1.25rem, 3svh, 2rem);
+      }
+      .why-choose-card-title {
+        font-size: clamp(1.125rem, 3.5vw, 1.75rem);
+        margin-bottom: clamp(0.5rem, 1.5svh, 0.75rem);
+      }
+      .why-choose-card-description {
+        font-size: clamp(0.875rem, 2svh, 1rem);
+      }
+      .why-choose-card-button-container {
+        margin-top: clamp(0.75rem, 2svh, 1.25rem);
+      }
     }
   </style>
 </section>
