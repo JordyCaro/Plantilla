@@ -88,6 +88,7 @@ const stats = [
       grid-template-columns: 1fr;
       height: 100svh;
       min-height: 100svh;
+      box-sizing: border-box;
     }
 
     @media (min-width: 768px) {
@@ -134,6 +135,7 @@ const stats = [
       align-items: center;
       justify-content: center;
       padding: clamp(1rem, 3svh, 2rem) clamp(1rem, 4vw, 4rem);
+      padding-top: var(--header-h, 64px);
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -147,9 +149,10 @@ const stats = [
       align-items: center;
       justify-content: center;
       gap: clamp(0.75rem, 2svh, 1.5rem);
-      height: 100%;
+      height: calc(100svh - var(--header-h, 64px));
       min-height: calc(100svh - var(--header-h, 64px));
-      padding: clamp(0.5rem, 2svh, 1rem) 0;
+      padding-top: clamp(0.5rem, 1.5svh, 1rem);
+      padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
       box-sizing: border-box;
     }
 
@@ -301,11 +304,15 @@ const stats = [
     /* Responsive - Mobile */
     @media (max-width: 767px) {
       .about-trainer-content {
-        padding: clamp(0.75rem, 2svh, 1.5rem) clamp(1rem, 4vw, 1.5rem);
+        padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(0.25rem, 1svh, 0.5rem);
+        padding-top: var(--header-h, 64px);
+        align-items: flex-start;
       }
       .about-trainer-inner {
         gap: clamp(0.5rem, 1.5svh, 1rem);
-        padding: clamp(0.25rem, 1svh, 0.75rem) 0;
+        padding-top: clamp(0.25rem, 1svh, 0.75rem);
+        padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+        height: calc(100svh - var(--header-h, 64px));
         min-height: calc(100svh - var(--header-h, 64px));
       }
       /* Las imágenes están ocultas en móvil, no necesitamos estilos para ellas */
