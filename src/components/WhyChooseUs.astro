@@ -135,7 +135,7 @@ const features = [
       justify-content: center;
       padding: clamp(1rem, 3svh, 2rem) clamp(1rem, 4vw, 3rem);
       padding-top: var(--header-h, 64px);
-      padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
+      padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -152,7 +152,7 @@ const features = [
       height: calc(100svh - var(--header-h, 64px));
       min-height: calc(100svh - var(--header-h, 64px));
       padding-top: clamp(0.5rem, 1.5svh, 1rem);
-      padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
+      padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
       box-sizing: border-box;
     }
 
@@ -247,7 +247,7 @@ const features = [
       max-width: 48rem;
       margin: 0 auto;
       padding: clamp(1rem, 4vw, 4rem);
-      padding-bottom: clamp(0.5rem, 2svh, 1.5rem);
+      padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
       box-sizing: border-box;
       z-index: 10;
       display: flex;
@@ -327,7 +327,7 @@ const features = [
         min-height: 100svh;
       }
       .why-choose-left {
-        padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(0.125rem, 0.5svh, 0.5rem);
+        padding: 0 clamp(1rem, 4vw, 1.5rem) 0;
         padding-top: var(--header-h, 64px);
         align-items: flex-start;
         height: auto;
@@ -337,7 +337,19 @@ const features = [
         gap: clamp(0.5rem, 1.5svh, 0.75rem);
         height: auto;
         min-height: auto;
-        padding-top: clamp(0.125rem, 0.5svh, 0.5rem);
+        padding-top: clamp(0.25rem, 1svh, 0.5rem);
+        padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+      }
+      .why-choose-right {
+        padding-bottom: 0;
+      }
+      .why-choose-list {
+        padding-bottom: 0;
+      }
+      .why-choose-item {
+        padding-bottom: 0;
+      }
+      .why-choose-item-content {
         padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
       }
       .why-choose-title {
