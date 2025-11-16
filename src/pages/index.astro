@@ -74,33 +74,33 @@ import ServicesSlider from '../components/ServicesSlider.astro';
       <!-- CTA Final Section -->
       <div class="snap-section">
         <ScrollReveal>
-          <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden h-full min-h-full">
+          <section class="final-cta-section">
             <!-- Background Image -->
-            <div class="absolute inset-0 z-0">
+            <div class="final-cta-bg">
               <img
                 src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920"
                 alt="Gimnasio"
-                class="w-full h-full object-cover"
+                class="final-cta-bg-img"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80"></div>
+              <div class="final-cta-bg-overlay"></div>
             </div>
             
-            <div class="relative z-10 w-full max-w-[1400px] mx-auto text-center flex items-center justify-center h-full">
-              <div>
-                <h2 class="text-4xl lg:text-6xl font-black text-white mb-6">
-                  TU TRANSFORMACIÓN <span class="text-primary">COMIENZA HOY</span>
+            <div class="final-cta-content">
+              <div class="final-cta-inner">
+                <h2 class="final-cta-title">
+                  TU TRANSFORMACIÓN <span class="final-cta-title-accent">COMIENZA HOY</span>
                 </h2>
-                <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                <p class="final-cta-description">
                   No esperes el momento perfecto. El momento perfecto es ahora. Da el primer paso hacia la mejor versión de ti mismo.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <div class="final-cta-button-container">
                   <a 
                     href="/contacto" 
-                    class="inline-flex items-center justify-center px-10 py-5 bg-primary text-gray-900 font-black rounded-lg hover:bg-primary-light transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-lg"
+                    class="final-cta-button"
                   >
-                    <span class="font-black">OBTÉN TU PRIMERA SESIÓN GRATIS</span>
-                    <svg class="w-6 h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <span class="final-cta-button-text">OBTÉN TU PRIMERA SESIÓN GRATIS</span>
+                    <svg class="final-cta-button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </a>
@@ -109,13 +109,10 @@ import ServicesSlider from '../components/ServicesSlider.astro';
             </div>
 
             <!-- Mini-footer credit at bottom over image -->
-            <div class="absolute inset-x-0 bottom-0 z-10">
-              <div class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="border-t border-white/20 py-3 text-sm flex items-center justify-between text-white/80">
-                  <span>© {new Date().getFullYear()} Jairo Traine. Todos los derechos reservados.</span>
-                  <span class="hidden sm:inline">Desarrollado por <a href="https://nemco-net.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-light font-bold">Nemco-Net</a></span>
-                  <span class="sm:hidden w-full text-center mt-1">Desarrollado por <a href="https://nemco-net.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-light font-bold">Nemco-Net</a></span>
-                </div>
+            <div class="final-cta-footer">
+              <div class="final-cta-footer-inner">
+                <span class="final-cta-footer-text">© {new Date().getFullYear()} Jairo Traine. Todos los derechos reservados.</span>
+                <span class="final-cta-footer-dev">Desarrollado por <a href="https://nemco-net.com/" target="_blank" rel="noopener noreferrer" class="final-cta-link">Nemco-Net</a></span>
               </div>
             </div>
           </section>
@@ -191,6 +188,272 @@ import ServicesSlider from '../components/ServicesSlider.astro';
       .snap-section > section { overflow-y: auto; }
       /* Hero siempre sin scroll interno */
       .snap-section:first-child > section { overflow: hidden; }
+    }
+
+    /* Final CTA Section - Sin scroll interno, todo debe caber */
+    .final-cta-section {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Background */
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .final-cta-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .final-cta-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+    }
+
+    /* Content */
+    .final-cta-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--header-h, 64px) clamp(1rem, 4vw, 2rem) clamp(0.125rem, 0.5svh, 0.5rem);
+      box-sizing: border-box;
+      min-height: 0;
+    }
+
+    .final-cta-inner {
+      width: 100%;
+      max-width: 48rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1rem, 2.5svh, 1.5rem);
+      height: calc(100svh - var(--header-h, 64px) - clamp(3rem, 8svh, 4.5rem));
+      min-height: calc(100svh - var(--header-h, 64px) - clamp(3rem, 8svh, 4.5rem));
+      padding-top: clamp(0.5rem, 1.5svh, 1rem);
+      padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+      box-sizing: border-box;
+    }
+
+    .final-cta-title {
+      font-size: clamp(2rem, 7vw, 4rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .final-cta-title-accent {
+      color: #00FF88;
+    }
+
+    .final-cta-description {
+      font-size: clamp(1rem, 2.5svh, 1.25rem);
+      color: #e5e7eb;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 42rem;
+      flex-shrink: 0;
+    }
+
+    .final-cta-button-container {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.75rem, 2svh, 1rem);
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Final CTA Button - Verde correcto */
+    .final-cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.875rem, 2.5svh, 1rem) clamp(2rem, 5vw, 2.5rem);
+      font-size: clamp(1rem, 2.5svh, 1.125rem);
+      font-weight: 900;
+      border-radius: 0.5rem;
+      background-color: #00FF88;
+      color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      transform: scale(1);
+    }
+    .final-cta-button:hover {
+      background-color: #00FFAA;
+      box-shadow: 0 6px 16px rgba(0, 255, 136, 0.4);
+      transform: scale(1.05);
+    }
+
+    .final-cta-button-text {
+      font-weight: 900;
+    }
+
+    .final-cta-button-icon {
+      width: clamp(1.25rem, 3svh, 1.5rem);
+      height: clamp(1.25rem, 3svh, 1.5rem);
+      margin-left: 0.5rem;
+    }
+
+    /* Footer */
+    .final-cta-footer {
+      position: absolute;
+      inset-x: 0;
+      bottom: 0;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .final-cta-footer-inner {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: clamp(0.75rem, 2svh, 1rem) clamp(2rem, 6vw, 4rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.5rem, 1.5svh, 0.75rem);
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 640px) {
+      .final-cta-footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: clamp(0.75rem, 2svh, 1rem) clamp(3rem, 8vw, 6rem);
+      }
+    }
+
+    .final-cta-footer-text {
+      font-size: clamp(0.75rem, 1.8svh, 0.875rem);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .final-cta-footer-dev {
+      font-size: clamp(0.75rem, 1.8svh, 0.875rem);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+    }
+
+    /* Final CTA Link - Verde correcto */
+    .final-cta-link {
+      color: #00FF88;
+      transition: color 0.3s ease;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .final-cta-link:hover {
+      color: #00FFAA;
+    }
+
+    /* Responsive - Mobile */
+    @media (max-width: 639px) {
+      .final-cta-content {
+        padding: 0 clamp(1rem, 4vw, 1.5rem) clamp(0.125rem, 0.5svh, 0.5rem);
+        padding-top: var(--header-h, 64px);
+        height: 100svh;
+        min-height: 100svh;
+        align-items: center;
+      }
+      .final-cta-inner {
+        gap: clamp(0.75rem, 2svh, 1.25rem);
+        padding-top: 0;
+        padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+        height: calc(100svh - var(--header-h, 64px) - clamp(2.5rem, 7svh, 3.5rem));
+        min-height: calc(100svh - var(--header-h, 64px) - clamp(2.5rem, 7svh, 3.5rem));
+        justify-content: center;
+      }
+      .final-cta-footer {
+        position: absolute;
+        bottom: 0;
+      }
+      .final-cta-title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+      }
+      .final-cta-description {
+        font-size: clamp(0.9375rem, 2.2svh, 1.125rem);
+      }
+      .final-cta-button {
+        padding: clamp(0.75rem, 2svh, 0.875rem) clamp(1.5rem, 4vw, 2rem);
+        font-size: clamp(0.9375rem, 2.2svh, 1.0625rem);
+        width: 100%;
+        max-width: min(20rem, 85vw);
+      }
+      .final-cta-footer {
+        position: relative;
+        margin-top: auto;
+      }
+      .final-cta-footer-inner {
+        padding: clamp(0.625rem, 1.8svh, 0.875rem) clamp(1rem, 4vw, 1.5rem);
+      }
+    }
+
+    /* Responsive - Tablet */
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .final-cta-inner {
+        gap: clamp(1.25rem, 3svh, 1.75rem);
+      }
+      .final-cta-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+      }
+      .final-cta-description {
+        font-size: clamp(1.125rem, 2.8svh, 1.375rem);
+      }
+    }
+
+    /* Responsive - Desktop */
+    @media (min-width: 1024px) {
+      .final-cta-inner {
+        gap: clamp(1.5rem, 3.5svh, 2rem);
+      }
+      .final-cta-title {
+        font-size: clamp(3rem, 9vw, 4.5rem);
+      }
+      .final-cta-description {
+        font-size: clamp(1.25rem, 3svh, 1.5rem);
+      }
+    }
+
+    /* Fallback para pantallas con poca altura */
+    @media (max-height: 600px) {
+      .final-cta-inner {
+        gap: clamp(0.75rem, 1.5svh, 1rem);
+        padding-top: clamp(0.25rem, 0.8svh, 0.5rem);
+        padding-bottom: clamp(0.125rem, 0.5svh, 0.5rem);
+      }
+      .final-cta-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+      .final-cta-description {
+        font-size: clamp(0.875rem, 2svh, 1rem);
+      }
+      .final-cta-button {
+        padding: clamp(0.625rem, 1.5svh, 0.75rem) clamp(1.5rem, 4vw, 2rem);
+        font-size: clamp(0.875rem, 2svh, 1rem);
+      }
     }
   </style>
 

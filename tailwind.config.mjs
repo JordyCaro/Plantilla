@@ -6,20 +6,20 @@ export default {
     extend: {
       colors: {
         primary: {
-            light: '#7CFF9F',
-            DEFAULT: '#4FFF85',
-            dark: '#2BEB6C',
+            light: '#00FFAA',
+            DEFAULT: '#00FF88',
+            dark: '#00CC6E',
             // Mejores contrastes para accesibilidad
-            '50': '#EFFFF6',
-            '100': '#DAFFE9',
-            '200': '#B6FFD5',
-            '300': '#8EFFBF',
-            '400': '#6AFFAD',
-            '500': '#4FFF85', // Color base fluorescente
-            '600': '#33E56A',
-            '700': '#22C657',
-            '800': '#169A43',
-            '900': '#0D6E32'
+            '50': '#E6FFF5',
+            '100': '#CCFFEB',
+            '200': '#99FFD7',
+            '300': '#66FFC3',
+            '400': '#33FFAF',
+            '500': '#00FF88', // Color base fluorescente radioactivo
+            '600': '#00CC6E',
+            '700': '#009955',
+            '800': '#00663C',
+            '900': '#003322'
         },
         secondary: {
             light: '#4A4A4A',
@@ -38,14 +38,14 @@ export default {
             '900': '#111827'
         },
         accent: {
-            light: '#7CFF9F',
-            DEFAULT: '#4FFF85',
-            dark: '#2BEB6C'
+            light: '#00FFAA',
+            DEFAULT: '#00FF88',
+            dark: '#00CC6E'
         },
         success: {
-            light: '#7CFF9F',
-            DEFAULT: '#4FFF85',
-            dark: '#2BEB6C'
+            light: '#00FFAA',
+            DEFAULT: '#00FF88',
+            dark: '#00CC6E'
         }
       },
       animation: {

@@ -152,7 +152,7 @@ export default function TestimonialSlider({
       <div 
         ref={sliderRef}
         className="relative overflow-hidden rounded-xl shadow-2xl"
-        style={{ backgroundColor: '#4FFF85', minHeight: '400px' }}
+        style={{ backgroundColor: '#00FF88', minHeight: '400px' }}
       >
         {/* Slider Container with overflow hidden */}
         <div className="relative overflow-hidden w-full" style={{ minHeight: '400px' }}>
