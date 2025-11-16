@@ -71,7 +71,7 @@ export default function StatsCounter({ stats }: Props) {
           key={index}
           className="text-center transform hover:scale-105 transition-transform duration-300"
         >
-          <div className="text-4xl lg:text-5xl font-black text-primary mb-2">
+          <div className="text-4xl lg:text-5xl font-black mb-2" style={{ color: '#4FFF85' }}>
             {counts[index]}
             {stat.suffix}
           </div>

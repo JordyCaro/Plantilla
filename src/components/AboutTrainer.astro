@@ -9,56 +9,56 @@ const stats = [
 ];
 ---
 
-<section id="about-trainer" class="relative w-full h-full min-h-full overflow-hidden flex">
-  <div class="relative z-10 grid grid-cols-1 md:grid-cols-[35%_65%] h-full min-h-full flex-1">
+<section id="about-trainer" class="about-trainer-section">
+  <div class="about-trainer-container">
     <!-- Left: Image Panel (35%) -->
-    <div class="relative h-full min-h-full order-1 hidden md:block">
+    <div class="about-trainer-image">
       <img 
         src="/jairo.jpg" 
         alt="Jairo entrenando" 
-        class="absolute inset-0 w-full h-full object-cover object-center" 
+        class="about-trainer-img" 
         loading="eager"
         fetchpriority="high"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+      <div class="about-trainer-image-overlay"></div>
     </div>
 
     <!-- Right: Bio + Stats (65%) -->
-    <div class="order-2 bg-gray-900 h-full min-h-full flex items-center px-6 sm:px-10 lg:px-16 py-10">
-      <div class="max-w-3xl mx-auto text-center">
+    <div class="about-trainer-content">
+      <div class="about-trainer-inner">
         <!-- Brand images instead of text heading -->
-        <div class="flex flex-col items-center justify-center mb-4 sm:mb-6">
-          <img src="/logo-blanco.png" alt="Jairo Traine" class="about-logo w-auto hidden sm:block" width="320" height="160" />
-          <img src="/nombre-blanco.png" alt="Jairo Traine" class="about-wordmark w-auto hidden sm:block" width="360" height="64" />
+        <div class="about-trainer-brand">
+          <img src="/logo-blanco.png" alt="Jairo Traine" class="about-logo" width="320" height="160" />
+          <img src="/nombre-blanco.png" alt="Jairo Traine" class="about-wordmark" width="360" height="64" />
         </div>
 
-        <p class="text-base sm:text-xl lg:text-3xl text-gray-300 leading-relaxed">
-          Soy tu <strong class="text-primary">mayor fan</strong>. Entrenador personal certificado, obsesionado con el detalle y con conseguir resultados reales. Mi método combina fuerza inteligente, nutrición sencilla y una mentalidad que no se rinde.
+        <p class="about-trainer-text">
+          Soy tu <strong class="about-trainer-text-accent">mayor fan</strong>. Entrenador personal certificado, obsesionado con el detalle y con conseguir resultados reales. Mi método combina fuerza inteligente, nutrición sencilla y una mentalidad que no se rinde.
         </p>
 
-        <div class="mt-8 sm:mt-10 grid grid-cols-2 gap-3 sm:gap-4">
-          <div class="rounded-xl bg-white/5 border border-white/10 p-4 sm:p-5">
-            <p class="text-sm sm:text-base text-gray-400">Especialidad</p>
-            <p class="text-white font-bold text-base sm:text-xl">Recomposición corporal</p>
+        <div class="about-trainer-info-grid">
+          <div class="about-trainer-info-card">
+            <p class="about-trainer-info-label">Especialidad</p>
+            <p class="about-trainer-info-value">Recomposición corporal</p>
           </div>
-          <div class="rounded-xl bg-white/5 border border-white/10 p-4 sm:p-5">
-            <p class="text-sm sm:text-base text-gray-400">Ciudad</p>
-            <p class="text-white font-bold text-base sm:text-xl">Medellín, CO</p>
+          <div class="about-trainer-info-card">
+            <p class="about-trainer-info-label">Ciudad</p>
+            <p class="about-trainer-info-value">Medellín, CO</p>
           </div>
         </div>
 
-        <div class="mt-8 sm:mt-12">
+        <div class="about-trainer-stats">
           <StatsCounter stats={stats} client:visible />
         </div>
 
-        <div class="mt-8 sm:mt-12 flex flex-wrap gap-3 sm:gap-4 justify-center">
-          <a href="#servicios" class="inline-flex items-center px-6 py-4 sm:px-8 sm:py-5 rounded-lg bg-primary text-gray-900 text-base sm:text-lg font-black shadow-md hover:bg-primary-light transition-colors">
+        <div class="about-trainer-buttons">
+          <a href="#servicios" class="about-trainer-btn about-trainer-btn-primary">
             Conoce mis servicios
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="about-trainer-btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <a href="/contacto" class="inline-flex items-center px-6 py-4 sm:px-8 sm:py-5 rounded-lg border-2 border-white/30 text-white text-base sm:text-lg font-bold hover:bg-white hover:text-gray-900 transition-colors">
+          <a href="/contacto" class="about-trainer-btn about-trainer-btn-secondary">
             Agenda una consulta
           </a>
         </div>
@@ -67,21 +67,364 @@ const stats = [
   </div>
 
   <style>
-    /* Base (móvil): ocultar imágenes de marca para ganar espacio */
-    .about-logo { height: 6rem; margin-top: -4%; margin-bottom: -4%; }
-    .about-wordmark { height: 2.5rem; margin-top: -4%; margin-bottom: -4%; }
+    /* About Trainer Section - Sin scroll interno, todo debe caber */
+    .about-trainer-section {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden;
+      box-sizing: border-box;
+      background-color: #111827;
+    }
+
+    .about-trainer-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100svh;
+      min-height: 100svh;
+    }
+
+    @media (min-width: 768px) {
+      .about-trainer-container {
+        grid-template-columns: 35% 65%;
+      }
+    }
+
+    /* Image Panel */
+    .about-trainer-image {
+      position: relative;
+      height: 100%;
+      min-height: 100%;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .about-trainer-image {
+        display: block;
+      }
+    }
+
+    .about-trainer-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .about-trainer-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    /* Content Panel */
+    .about-trainer-content {
+      background-color: #111827;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 3svh, 2rem) clamp(1rem, 4vw, 4rem);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .about-trainer-inner {
+      width: 100%;
+      max-width: 48rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.75rem, 2svh, 1.5rem);
+      height: 100%;
+      min-height: calc(100svh - var(--header-h, 64px));
+      padding: clamp(0.5rem, 2svh, 1rem) 0;
+      box-sizing: border-box;
+    }
+
+    /* Brand Images */
+    .about-trainer-brand {
+      display: none; /* Oculto en móvil por defecto */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.75rem, 2svh, 1.5rem);
+      flex-shrink: 0;
+      margin-top: clamp(-1rem, -3svh, -2rem);
+      margin-bottom: clamp(-0.5rem, -1.5svh, -1rem);
+    }
 
     @media (min-width: 640px) {
-      .about-logo { height: 10rem; margin-top: -8%; margin-bottom: -8%; }
-      .about-wordmark { height: 4rem; margin-top: -8%; margin-bottom: -8%; }
+      .about-trainer-brand {
+        display: flex; /* Visible desde tablet en adelante */
+      }
     }
-    @media (min-width: 768px) {
-      .about-logo { height: 16rem; margin-top: -12%; margin-bottom: -12%; }
-      .about-wordmark { height: 7rem; margin-top: -8%; margin-bottom: -8%; }
+
+    .about-logo {
+      height: clamp(6rem, 18svh, 14rem);
+      width: auto;
+      max-width: min(90vw, 400px);
+      object-fit: contain;
+      flex-shrink: 0;
+      margin: -10%;
+      margin-top: clamp(-2rem, -5svh, -3rem);
+      margin-bottom: clamp(-1rem, -3svh, -2rem);
     }
+
+    .about-wordmark {
+      height: clamp(4rem, 14svh, 10rem);
+      width: auto;
+      max-width: min(85vw, 500px);
+      object-fit: contain;
+      flex-shrink: 0;
+      margin: -18%;
+      margin-top: clamp(-2.5rem, -6svh, -4rem);
+      margin-bottom: clamp(-1.5rem, -4svh, -2.5rem);
+    }
+
+    /* Text */
+    .about-trainer-text {
+      font-size: clamp(0.875rem, 2.5svh, 1.5rem);
+      color: #d1d5db;
+      line-height: 1.6;
+      max-width: 100%;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .about-trainer-text-accent {
+      color: #4FFF85;
+      font-weight: 700;
+    }
+
+    /* Info Grid */
+    .about-trainer-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.75rem, 2svh, 1rem);
+      width: 100%;
+      max-width: 28rem;
+      margin: 0 auto;
+      flex-shrink: 0;
+    }
+
+    .about-trainer-info-card {
+      border-radius: 0.75rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: clamp(0.75rem, 2svh, 1.25rem);
+      flex-shrink: 0;
+    }
+
+    .about-trainer-info-label {
+      font-size: clamp(0.75rem, 1.8svh, 1rem);
+      color: #9ca3af;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .about-trainer-info-value {
+      font-size: clamp(0.875rem, 2.2svh, 1.25rem);
+      color: #ffffff;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Stats */
+    .about-trainer-stats {
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    /* Buttons */
+    .about-trainer-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(0.75rem, 2svh, 1rem);
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .about-trainer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.75rem, 2svh, 1rem) clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(0.875rem, 2.2svh, 1.125rem);
+      font-weight: 700;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .about-trainer-btn-primary {
+      background-color: #4FFF85;
+      color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(79, 255, 133, 0.3);
+    }
+
+    .about-trainer-btn-primary:hover {
+      background-color: #7CFF9F;
+      box-shadow: 0 6px 16px rgba(79, 255, 133, 0.4);
+    }
+
+    .about-trainer-btn-secondary {
+      background-color: transparent;
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .about-trainer-btn-secondary:hover {
+      background-color: #ffffff;
+      color: #111827;
+    }
+
+    .about-trainer-btn-icon {
+      width: clamp(1rem, 2.5svh, 1.5rem);
+      height: clamp(1rem, 2.5svh, 1.5rem);
+      margin-left: 0.5rem;
+    }
+
+    /* Responsive - Mobile */
+    @media (max-width: 767px) {
+      .about-trainer-content {
+        padding: clamp(0.75rem, 2svh, 1.5rem) clamp(1rem, 4vw, 1.5rem);
+      }
+      .about-trainer-inner {
+        gap: clamp(0.5rem, 1.5svh, 1rem);
+        padding: clamp(0.25rem, 1svh, 0.75rem) 0;
+        min-height: calc(100svh - var(--header-h, 64px));
+      }
+      /* Las imágenes están ocultas en móvil, no necesitamos estilos para ellas */
+      .about-trainer-text {
+        font-size: clamp(0.8125rem, 2.2svh, 1.125rem);
+        line-height: 1.5;
+      }
+      .about-trainer-info-grid {
+        gap: clamp(0.5rem, 1.5svh, 0.75rem);
+      }
+      .about-trainer-info-card {
+        padding: clamp(0.625rem, 1.8svh, 1rem);
+      }
+      .about-trainer-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: clamp(0.5rem, 1.5svh, 0.75rem);
+      }
+      .about-trainer-btn {
+        width: 100%;
+        max-width: 20rem;
+      }
+    }
+
+    /* Responsive - Tablet */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .about-trainer-inner {
+        gap: clamp(1rem, 2.5svh, 1.75rem);
+      }
+      .about-trainer-brand {
+        gap: clamp(0.75rem, 2svh, 1.25rem);
+        margin-top: clamp(-1.5rem, -4svh, -2.5rem);
+        margin-bottom: clamp(-0.75rem, -2svh, -1.25rem);
+      }
+      .about-logo {
+        height: clamp(8rem, 20svh, 14rem);
+        margin: -12%;
+        margin-top: clamp(-3rem, -7svh, -4rem);
+        margin-bottom: clamp(-1.5rem, -4svh, -2.5rem);
+      }
+      .about-wordmark {
+        height: clamp(5.5rem, 16svh, 9rem);
+        margin: -20%;
+        margin-top: clamp(-3.5rem, -8svh, -5rem);
+        margin-bottom: clamp(-2rem, -5svh, -3rem);
+      }
+      .about-trainer-text {
+        font-size: clamp(1rem, 2.8svh, 1.375rem);
+      }
+    }
+
+    /* Responsive - Desktop */
     @media (min-width: 1024px) {
-      .about-logo { height: 20rem; margin-top: -10%; margin-bottom: -10%; }
-      .about-wordmark { height: 12rem; margin-top: -10%; margin-bottom: -10%; }
+      .about-trainer-inner {
+        gap: clamp(1.25rem, 3svh, 2rem);
+      }
+      .about-trainer-brand {
+        gap: clamp(1rem, 2.5svh, 1.5rem);
+        margin-top: clamp(-2rem, -5svh, -3rem);
+        margin-bottom: clamp(-1rem, -2.5svh, -1.5rem);
+      }
+      .about-logo {
+        height: clamp(10rem, 24svh, 16rem);
+        margin: -12%;
+        margin-top: clamp(-4rem, -9svh, -5rem);
+        margin-bottom: clamp(-2rem, -5svh, -3rem);
+      }
+      .about-wordmark {
+        height: clamp(7rem, 18svh, 12rem);
+        margin: -20%;
+        margin-top: clamp(-5rem, -11svh, -6.5rem);
+        margin-bottom: clamp(-2.5rem, -6svh, -4rem);
+      }
+      .about-trainer-text {
+        font-size: clamp(1.125rem, 3svh, 1.875rem);
+      }
+      .about-trainer-buttons {
+        flex-direction: row;
+      }
+      .about-trainer-btn {
+        width: auto;
+      }
+    }
+
+    /* Fallback para pantallas con poca altura */
+    @media (max-height: 600px) {
+      .about-trainer-inner {
+        gap: clamp(0.5rem, 1.2svh, 0.75rem);
+        padding: clamp(0.25rem, 0.8svh, 0.5rem) 0;
+      }
+      .about-trainer-brand {
+        gap: clamp(0.375rem, 1svh, 0.75rem);
+        margin-top: clamp(-0.5rem, -1.5svh, -1rem);
+        margin-bottom: clamp(-0.25rem, -1svh, -0.5rem);
+      }
+      .about-logo {
+        height: clamp(4rem, 12svh, 7rem);
+        margin: -10%;
+        margin-top: clamp(-1rem, -3svh, -2rem);
+        margin-bottom: clamp(-0.5rem, -1.5svh, -1rem);
+      }
+      .about-wordmark {
+        height: clamp(3rem, 10svh, 5.5rem);
+        margin: -18%;
+        margin-top: clamp(-1.5rem, -4svh, -2.5rem);
+        margin-bottom: clamp(-0.75rem, -2svh, -1.5rem);
+      }
+      .about-trainer-text {
+        font-size: clamp(0.75rem, 1.8svh, 0.95rem);
+      }
+      .about-trainer-info-grid {
+        gap: clamp(0.5rem, 1.2svh, 0.75rem);
+      }
+      .about-trainer-info-card {
+        padding: clamp(0.5rem, 1.2svh, 0.75rem);
+      }
+      .about-trainer-buttons {
+        gap: clamp(0.5rem, 1.2svh, 0.75rem);
+      }
     }
   </style>
 </section>
