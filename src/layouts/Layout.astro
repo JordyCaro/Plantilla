@@ -36,6 +36,7 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
     <meta name="author" content="Jairo Traine" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#4FFF85" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
@@ -195,6 +196,8 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
         scroll-behavior: smooth;
         background-color: #0b0b0b; /* igual al snap container para evitar líneas */
         height: 100%;
+        /* Fallback vh variable for mobile UI chrome */
+        --vh: 1vh;
       }
 
       body {
@@ -255,6 +258,10 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
           scroll-behavior: auto;
         }
       }
+      /* Prefer dynamic viewport when available */
+      @supports (height: 100dvh) {
+        :root { --vh: 1dvh; }
+      }
     </style>
   </head>
   <body class="bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
@@ -267,6 +274,18 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
     </main>
     <!-- Footer eliminado -->
   </body>
+  <script is:inline>
+    // Global precise vh for all pages (handles mobile UI variance)
+    (function(){
+      function setVH() {
+        var vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', vh + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH, { passive: true });
+      window.addEventListener('orientationchange', setVH);
+    })();
+  </script>
 </html>
 
 <!-- TEMA OSCURO POR DEFECTO - Código comentado pero no eliminado
