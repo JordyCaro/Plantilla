@@ -32,7 +32,8 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Unified viewport meta (avoid duplicates across devices) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="author" content="Jairo Traine" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#4FFF85" />
@@ -206,11 +207,19 @@ const ogImage = image?.startsWith('http') ? image : new URL(image, Astro.site).t
         margin: 0;
         background-color: #0b0b0b; /* unifica el fondo global */
         min-height: 100%;
+        padding-bottom: env(safe-area-inset-bottom, 0); /* evita que el contenido quede bajo la barra */
+      }
+
+      /* Media that should never overflow the viewport */
+      img, video, svg, canvas {
+        max-width: 100%;
+        height: auto;
       }
 
       * {
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* IE 10+ */
+        box-sizing: border-box;
       }
 
       *::-webkit-scrollbar {
