@@ -4,12 +4,31 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout title="Piernas Fuertes: Guía de Técnica en Sentadilla" description="Aprende a ejecutar la sentadilla con seguridad y máxima eficacia.">
   <main class="pt-20 sm:pt-24">
-    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-black/70 to-primary/40 text-white">
-      <div class="max-w-5xl mx-auto">
-        <h1 class="text-5xl font-black mb-4">Técnica de <span class="text-primary">Sentadilla</span></h1>
-        <p class="text-xl text-white/90 max-w-3xl">Puntos clave para progresar sin lesiones: postura, profundidad, tempo y respiración.</p>
-      </div>
-    </section>
+        <!-- Hero Section -->
+        <section class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+          <div class="absolute inset-0 z-0">
+            <img
+              src="https://images.unsplash.com/photo-1536922246289-88c42f957773?q=80&w=1504&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Persona principiante entrenando en el gym"
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-primary-dark/50"></div>
+          </div>
+          <div class="relative z-10 text-center text-white max-w-4xl px-4">
+            <div class="inline-block mb-4">
+              <span class="px-4 py-2 bg-primary-light/20 text-primary-light rounded-full text-sm font-bold uppercase tracking-wider">
+                Entrenamiento
+              </span>
+            </div>
+            <h1 class="text-5xl font-black mb-4">Técnica de <span class="text-primary">Sentadilla</span></h1>
+            <p class="text-xl text-white/90 max-w-3xl">Puntos clave para progresar sin lesiones: postura, profundidad, tempo y respiración.</p>ass="flex items-center justify-center gap-4 text-sm text-gray-300">
+              <span>10 Ene 2024</span>
+              <span>•</span>
+              <span>8 min de lectura</span>
+            </div>
+          </div>
+        </section>
 
     <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-gray-200">
       <div class="max-w-5xl mx-auto space-y-8">
@@ -44,6 +63,24 @@ import Layout from '../../layouts/Layout.astro';
         </div>
       </div>
     </section>
+        <!-- Call to Action -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-700 text-center">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-6">¿Necesitas Guía Personalizada?</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              Cada cuerpo es diferente. Te ayudo a crear una rutina personalizada que se adapte a tu nivel y objetivos.
+            </p>
+            <a
+              href="/contacto"
+              class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-primary hover:bg-primary-light rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl"
+            >
+              ¡Quiero mi Rutina Personalizada!
+              <svg class="w-6 h-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </section>
   </main>
 </Layout>
 
