@@ -68,10 +68,10 @@
     let clickOutsideHandler: ((e: MouseEvent) => void) | null = null;
     let escapeHandler: ((e: KeyboardEvent) => void) | null = null;
 
-    function initMenu() {
+  function initMenu() {
       const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
       const menu = document.getElementById('mobile-menu') as HTMLElement | null;
-      
+    
       if (!toggle || !menu) return;
       
       // Remove existing listeners
@@ -112,7 +112,7 @@
             !toggle.contains(e.target as Node)) {
           menu.classList.add('hidden');
           toggle.setAttribute('aria-expanded', 'false');
-        }
+    }
       };
       document.addEventListener('click', clickOutsideHandler);
 
@@ -133,7 +133,7 @@
       initMenu();
     }
     
-    document.addEventListener('astro:page-load', initMenu);
+  document.addEventListener('astro:page-load', initMenu);
   })();
 </script>
 

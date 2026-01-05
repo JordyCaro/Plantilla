@@ -41,21 +41,21 @@ const shouldUseAstroImage = isImageMetadata || (!src.startsWith('http') && !src.
 
 <div class="optimized-image-container">
   {shouldUseAstroImage && typeof imageSrc !== 'string' ? (
-    <Image
+  <Image
       src={imageSrc}
-      alt={alt}
-      width={width}
-      height={height}
-      class={`optimized-image ${className}`}
-      loading={loading}
-      quality={quality}
-      format={format}
-      sizes={sizes}
-      {...(placeholder === 'blur' && { 
-        placeholder: 'blur',
-        blurDataURL: blurDataURL || defaultBlurDataURL
-      })}
-    />
+    alt={alt}
+    width={width}
+    height={height}
+    class={`optimized-image ${className}`}
+    loading={loading}
+    quality={quality}
+    format={format}
+    sizes={sizes}
+    {...(placeholder === 'blur' && { 
+      placeholder: 'blur',
+      blurDataURL: blurDataURL || defaultBlurDataURL
+    })}
+  />
   ) : (
     <img
       src={typeof imageSrc === 'string' ? imageSrc : imageSrc.src}
@@ -106,7 +106,7 @@ const shouldUseAstroImage = isImageMetadata || (!src.startsWith('http') && !src.
   (function() {
     let imageObserver: IntersectionObserver | null = null;
 
-    function initOptimizedImages() {
+  function initOptimizedImages() {
       // Cleanup existing observer
       if (imageObserver) {
         imageObserver.disconnect();
@@ -114,53 +114,53 @@ const shouldUseAstroImage = isImageMetadata || (!src.startsWith('http') && !src.
       }
 
       const images = document.querySelectorAll<HTMLImageElement>('.optimized-image[loading="lazy"]');
-      
+    
       if (images.length === 0) return;
       
       imageObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const img = entry.target as HTMLImageElement;
-              
-              // Add loaded class when image loads
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            
+            // Add loaded class when image loads
               const handleLoad = () => {
-                img.classList.add('loaded');
+              img.classList.add('loaded');
                 img.removeEventListener('load', handleLoad);
               };
               
               img.addEventListener('load', handleLoad);
-              
-              // If image is already loaded (cached), add class immediately
+            
+            // If image is already loaded (cached), add class immediately
               if (img.complete && img.naturalHeight !== 0) {
-                img.classList.add('loaded');
+              img.classList.add('loaded');
                 img.removeEventListener('load', handleLoad);
-              }
-              
-              imageObserver?.unobserve(img);
             }
-          });
-        },
-        {
-          rootMargin: '50px 0px',
-          threshold: 0.01
-        }
-      );
+            
+              imageObserver?.unobserve(img);
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      }
+    );
 
-      images.forEach((img) => {
+    images.forEach((img) => {
         imageObserver?.observe(img);
-      });
-    }
+    });
+  }
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initOptimizedImages);
-    } else {
-      initOptimizedImages();
-    }
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOptimizedImages);
+  } else {
+    initOptimizedImages();
+  }
 
-    // Reinitialize after Astro transitions
-    document.addEventListener('astro:after-swap', initOptimizedImages);
+  // Reinitialize after Astro transitions
+  document.addEventListener('astro:after-swap', initOptimizedImages);
 
     // Cleanup on page unload
     window.addEventListener('beforeunload', () => {

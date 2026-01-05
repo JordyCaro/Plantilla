@@ -69,7 +69,7 @@ const animationId = `scroll-reveal-${Math.random().toString(36).substr(2, 9)}`;
     let observer: IntersectionObserver | null = null;
     const observedElements = new Set<HTMLElement>();
 
-    function initScrollReveal() {
+  function initScrollReveal() {
       // Cleanup existing observer
       if (observer) {
         observedElements.forEach(element => {
@@ -81,61 +81,61 @@ const animationId = `scroll-reveal-${Math.random().toString(36).substr(2, 9)}`;
       }
 
       const elements = document.querySelectorAll<HTMLElement>('.scroll-reveal');
-      
+    
       if (elements.length === 0) return;
 
       // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const element = entry.target as HTMLElement;
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
               const delay = prefersReducedMotion ? 0 : parseInt(element.dataset.delay || '0');
               const duration = prefersReducedMotion ? 0 : parseInt(element.dataset.duration || '600');
-              
-              // Aplicar estilos CSS personalizados
-              element.style.setProperty('--duration', `${duration}ms`);
-              element.style.setProperty('--distance', `${element.dataset.distance || '50'}px`);
-              
+            
+            // Aplicar estilos CSS personalizados
+            element.style.setProperty('--duration', `${duration}ms`);
+            element.style.setProperty('--distance', `${element.dataset.distance || '50'}px`);
+            
               if (prefersReducedMotion) {
                 element.classList.add('revealed');
               } else {
-                setTimeout(() => {
-                  element.classList.add('revealed');
-                }, delay);
+            setTimeout(() => {
+              element.classList.add('revealed');
+            }, delay);
               }
-              
+            
               observer?.unobserve(element);
               observedElements.delete(element);
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        }
-      );
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
 
-      elements.forEach((element) => {
+    elements.forEach((element) => {
         // Skip if already revealed
         if (!element.classList.contains('revealed')) {
           observer?.observe(element);
           observedElements.add(element);
         }
-      });
-    }
+    });
+  }
 
-    // Inicializar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initScrollReveal);
-    } else {
-      initScrollReveal();
-    }
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+  } else {
+    initScrollReveal();
+  }
 
-    // Reinicializar después de transiciones de Astro
-    document.addEventListener('astro:after-swap', initScrollReveal);
+  // Reinicializar después de transiciones de Astro
+  document.addEventListener('astro:after-swap', initScrollReveal);
 
     // Cleanup on page unload
     window.addEventListener('beforeunload', () => {
